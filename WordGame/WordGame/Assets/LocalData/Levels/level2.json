@@ -1,0 +1,77 @@
+{
+	
+	"id": 2, 
+	"name": "Level 2", 
+	"boardWidth": 8, 
+	"boardHeight": 7, 
+	"tileWidth": 40, 
+	"tileHeight": 40, 
+	"tileArray":
+	[
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+
+        {"image" : "BlueTile.png", "useable": "false"},
+        {"image" : "BlueTile.png", "useable": "false"},
+        {"image" : "BlueTile.png", "useable": "false"},
+        {"image" : "GreenTile.png", "useable": "true"},
+        {"image" : "GreenTile.png", "useable": "true"},
+        {"image" : "GreenTile.png", "useable": "true"},
+        {"image" : "GreenTile.png", "useable": "true"},
+
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "BlueTile.png", "useable": "false"},
+		{"image" : "BlueTile.png", "useable": "false"},
+		{"image" : "BlueTile.png", "useable": "false"},
+		{"image" : "BlueTile.png", "useable": "false"},
+		{"image" : "BlueTile.png", "useable": "false"},
+
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+		{"image" : "GreenTile.png", "useable": "true"},
+     
+        {"image" : "GreenTile.png", "useable": "true"},
+        {"image" : "GreenTile.png", "useable": "true"},
+        {"image" : "GreenTile.png", "useable": "true"},
+        {"image" : "GreenTile.png", "useable": "true"},
+        {"image" : "GreenTile.png", "useable": "true"},
+        {"image" : "GreenTile.png", "useable": "true"},
+        {"image" : "GreenTile.png", "useable": "true"},
+     			
+	]
+	
+}
