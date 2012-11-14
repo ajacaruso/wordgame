@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "GameTypeMainControlls.h"
-
+#import "GameTypeMainConstants.h"
 
 @implementation GameTypeMainControlls
-@synthesize controllMenu, gameManager;
+@synthesize controllMenu, gameManager, specialAbility, specialItemButton;
 
 - (GameTypeMainControlls*)initWithControlls:(NSString *)Controlls withManager:manager{
     
@@ -25,14 +25,19 @@
                                                          selectedImage: @"controls_submit_btn.png"
                                                                 target:self
                                                               selector:@selector(submitWord:)];
-
-    controllMenu = [CCMenu menuWithItems:menuButton, submitButton, nil];
+   
+    specialItemButton = [CCMenuItemImage itemFromNormalImage:@"arrow_up_button.png"
+                                                           selectedImage: @"arrow_up_button.png"
+                                                                  target:self
+                                                                selector:@selector(changeSpecial:)];
+    
+    controllMenu = [CCMenu menuWithItems:menuButton, submitButton, specialItemButton, nil];
     [controllMenu alignItemsHorizontallyWithPadding: 20.0f];
-    controllMenu.position  = ccp(65, 45);
+    controllMenu.position  = ccp(105, 45);
     [self addChild:controllMenu];
 
     gameManager = manager;
-    
+    specialAbility = specialUp;
     return self;
 }
 
@@ -44,7 +49,42 @@
 
 - (void) submitWord: (CCMenuItem  *) menuItem
 {
-    [gameManager submitWord];
+    [gameManager submitWord:specialAbility];
+}
+
+- (void) changeSpecial: (CCMenuItem  *) menuItem
+{
+    
+    CCSprite *updatedSpriteNormal;
+    CCSprite *updatedSpriteSelected;
+    
+    if ([specialAbility isEqual:specialUp]) {
+        
+        specialAbility = specialRight;
+        updatedSpriteNormal = [CCSprite spriteWithFile:@"arrow_right_button.png"];
+        updatedSpriteSelected = [CCSprite spriteWithFile:@"arrow_right_button.png"];
+        
+    }else if ([specialAbility isEqual:specialRight]) {
+        
+        specialAbility = specialDown;
+        updatedSpriteNormal = [CCSprite spriteWithFile:@"arrow_down_button.png"];
+        updatedSpriteSelected = [CCSprite spriteWithFile:@"arrow_down_button.png"];
+        
+    }else if ([specialAbility isEqual:specialDown]) {
+        specialAbility = specialLeft;
+        updatedSpriteNormal = [CCSprite spriteWithFile:@"arrow_left_button.png"];
+        updatedSpriteSelected = [CCSprite spriteWithFile:@"arrow_left_button.png"];
+        
+    }else {
+        specialAbility = specialUp;
+        updatedSpriteNormal = [CCSprite spriteWithFile:@"arrow_up_button.png"];
+        updatedSpriteSelected = [CCSprite spriteWithFile:@"arrow_up_button.png"];
+        
+    }
+    
+    [specialItemButton setNormalImage:updatedSpriteNormal];
+    [specialItemButton setSelectedImage:updatedSpriteSelected];
+    
 }
 
 - (void) enableControls:(BOOL)enable {

@@ -30,7 +30,7 @@
 
 - (void)openMenu;
 - (void)closeMenu;
-- (void)submitWord;
+- (void)submitWord:(NSString *)specialAbility;
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer;
 - (void)selectSpriteForTouch:(CGPoint)touchLocation;
 - (void)panForTranslation:(CGPoint)translation;

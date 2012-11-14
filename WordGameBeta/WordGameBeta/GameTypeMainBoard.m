@@ -82,96 +82,82 @@
  2 = row (NSNumber)
  */
 
-//ToDo - Revamp Detection to be more optimal and fun for user. Radius isnt the best Option.
-- (void)changeTilesForActiveLetters{
+/* 
+2:2
+3:4
+4:6
+5:9
+6:12
+7:16
+*/
+- (void)changeTilesForActiveLetters:(NSString *)specialAbility{
    
     NSMutableArray *tilesToChange = [[NSMutableArray alloc] init];
     
     //Find The Radius based on word length
-    int radius = 0;
-    NSMutableArray *positionArray = [self generateCurrentLetterPositionArray];
-    radius = (int)floorf([positionArray count]/2);
     
-    //Use Radius to build a tile Array of all letters within the radius of the word
+    NSMutableArray *positionArray = [self generateCurrentLetterPositionArray];
+    
+    int maxDistance = ceil([positionArray count]/2.0);
+    
+    
     for(NSMutableArray *objectArray in positionArray){
         int col = [[objectArray objectAtIndex:1] intValue];
         int row = [[objectArray objectAtIndex:2] intValue];
         
-        for(int r = 1; r <= radius; r++){
-           
-            NSNumber *tileCol = [[NSNumber alloc]initWithInt:(col)];
-            NSNumber *tileRow = [[NSNumber alloc]initWithInt:(row)];
-            NSNumber *tileColPos = [[NSNumber alloc]initWithInt:(col+r)];
-            NSNumber *tileRowPos = [[NSNumber alloc]initWithInt:(row+r)];
-            NSNumber *tileColNeg = [[NSNumber alloc]initWithInt:(col-r)];
-            NSNumber *tileRowNeg = [[NSNumber alloc]initWithInt:(row-r)];
-            
-            //Top
-            if([tileColPos intValue] < tilesInRow){
-                GameTypeMainTile *tileTop = [self tileAtCol:tileColPos andRow:tileRow];
-                if(![tilesToChange containsObject:tileTop]){
-                    [tilesToChange addObject:tileTop];
-                }  
-            }
-            //TR
-            if([tileRowPos intValue] < tilesInRow && [tileColPos intValue] < tilesInRow){
-                GameTypeMainTile *tileTR = [self tileAtCol:tileColPos andRow:tileRowPos];
-                if(![tilesToChange containsObject:tileTR]){
-                    [tilesToChange addObject:tileTR];
+        GameTypeMainTile *tileCurrent = [self tileAtCol:col andRow:row];
+        if(![tilesToChange containsObject:tileCurrent]){
+            [tilesToChange addObject:tileCurrent];
+        }
+        
+        if ([specialAbility isEqual:specialUp]) {
+            for(int c = 1; c <= maxDistance; c++){
+                if(col+c < tilesInRow){
+                    GameTypeMainTile *tileUpdate = [self tileAtCol:col+c andRow:row];
+                    if(![tilesToChange containsObject:tileUpdate]){
+                        [tilesToChange addObject:tileUpdate];
+                    }
                 }
             }
-            
-            //Right
-            if([tileRowPos intValue] < tilesInRow){
-                GameTypeMainTile *tileRight = [self tileAtCol:tileCol andRow:tileRowPos];
-                if(![tilesToChange containsObject:tileRight]){
-                    [tilesToChange addObject:tileRight];
+        }else if ([specialAbility isEqual:specialDown]) {
+            for(int c = 1; c <= maxDistance; c++){
+                
+                if(col-c >= 0){
+                    GameTypeMainTile *tileUpdate = [self tileAtCol:col-c andRow:row];
+                    if(![tilesToChange containsObject:tileUpdate]){
+                        [tilesToChange addObject:tileUpdate];
+                    }
                 }
+                
             }
             
-            //BR
-            if([tileRowPos intValue] < tilesInRow && [tileColNeg intValue] >= 0){
-                GameTypeMainTile *tileBR = [self tileAtCol:tileColNeg andRow:tileRowPos];
-                if(![tilesToChange containsObject:tileBR]){
-                    [tilesToChange addObject:tileBR];
+        }else if ([specialAbility isEqual:specialLeft]) {
+            for(int r = 1; r <= maxDistance; r++){
+                
+                if(row-r >= 0){
+                    GameTypeMainTile *tileUpdate = [self tileAtCol:col andRow:row-r];
+                    if(![tilesToChange containsObject:tileUpdate]){
+                        [tilesToChange addObject:tileUpdate];
+                    }
                 }
+                
             }
+        }else if ([specialAbility isEqual:specialRight]) {
             
-            //Bottom
-            if([tileColNeg intValue] >= 0){
-                GameTypeMainTile *tileBottom = [self tileAtCol:tileColNeg andRow:tileRow];
-                if(![tilesToChange containsObject:tileBottom]){
-                    [tilesToChange addObject:tileBottom];
-                }
-            }
-            //BL
-            if([tileRowNeg intValue] >= 0 && [tileColNeg intValue] >= 0){
-                GameTypeMainTile *tileBL = [self tileAtCol:tileColNeg andRow:tileRowNeg];
-                if(![tilesToChange containsObject:tileBL]){
-                    [tilesToChange addObject:tileBL];
-                }
-            }
-            
-            //Left
-            if([tileRowNeg intValue] >= 0){
-                GameTypeMainTile *tileLeft = [self tileAtCol:tileCol andRow:tileRowNeg];
-                if(![tilesToChange containsObject:tileLeft]){
-                    [tilesToChange addObject:tileLeft];
-                }
-            }
-            //TL
-            if([tileRowNeg intValue] >= 0 && [tileColPos intValue] < tilesInRow){
-                GameTypeMainTile *tileBL = [self tileAtCol:tileColPos andRow:tileRowNeg];
-                if(![tilesToChange containsObject:tileBL]){
-                    [tilesToChange addObject:tileBL];
-                }
-            }
+             for(int r = 1; r <= maxDistance; r++){
+                 if(row+r < tilesInRow){
+                     GameTypeMainTile *tileUpdate = [self tileAtCol:col andRow:row+r];
+                     if(![tilesToChange containsObject:tileUpdate]){
+                         [tilesToChange addObject:tileUpdate];
+                     }
+                 }
+             }
         }
     }
     
-    [self setTileArray:tilesToChange To:@"empty"];
+    [self setTileArrayState:tilesToChange To:@"empty"];
     
-    NSLog(@"Radius Value is : %d, Count is : %d", radius, [tilesToChange count]);
+    NSLog(@"Tiles in Array %d, maxDistance Value is : %d, Changed Tiles : %d, Ability is : %@", [positionArray count], maxDistance, [tilesToChange count], specialAbility);
 }
 
 - (void)removeAllLetters{
@@ -296,14 +282,14 @@
     return positionArray;
 }
 
-- (GameTypeMainTile *)tileAtCol:(NSNumber *)Col andRow:(NSNumber *)Row{
+- (GameTypeMainTile *)tileAtCol:(int)Col andRow:(int)Row{
     
-    GameTypeMainTile *returnTile = [[boardArray2 objectAtIndex:[Col intValue]]  objectAtIndex:[Row intValue]];
+    GameTypeMainTile *returnTile = [[boardArray2 objectAtIndex:Col]  objectAtIndex:Row];
     
     return returnTile;
 }
 
-- (void)setTileArray:(NSMutableArray *)tileArray To:(NSString *)state{
+- (void)setTileArrayState:(NSMutableArray *)tileArray To:(NSString *)state{
     
     if(state == @"empty"){
         for(GameTypeMainTile *tile in tileArray){

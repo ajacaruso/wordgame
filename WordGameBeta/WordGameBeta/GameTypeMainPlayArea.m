@@ -30,11 +30,11 @@
     return self;
 }
 
--(void)submitWord{
+-(void)submitWord:(NSString *)specialAbility{
     
     if([gameBoard checkForWord]){
         NSLog(@"Valid Word On Board!");
-        [gameBoard changeTilesForActiveLetters];
+        [gameBoard changeTilesForActiveLetters:specialAbility];
         [gameBoard removeAllLetters];
         [wordBank updateWordBank];
     }else{

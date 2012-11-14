@@ -18,6 +18,6 @@
 @property (nonatomic, retain) GameTypeMainWordBank *wordBank;
 
 - (GameTypeMainPlayArea *)initPlayArea;
-- (void)submitWord;
+- (void)submitWord:(NSString *)specialAbility;
 
 @end

@@ -7,3 +7,8 @@ typedef enum {
     tilesInRow = 8,
     tileSize = 40
 } boardNumbers;
+
+#define specialUp @"up"
+#define specialRight @"right"
+#define specialDown @"down"
+#define specialLeft @"left"

@@ -42,8 +42,8 @@
     [gameControlls enableControls:(TRUE)];
 }
 
--(void)submitWord{
-    [playArea submitWord];
+-(void)submitWord:(NSString *)specialAbility{
+    [playArea submitWord:specialAbility];
 }
 
 #pragma mark - Move Events / Functions
@@ -119,13 +119,17 @@
         //Conversion Steps for Absolute Point
         CGRect boundingBox = [sprite boundingBox];
         boundingBox.origin = CGPointZero;
+        
         GameTypeMainLetter *shape = sprite;
         CGPoint touchLocationRelativeToShape = [shape convertToNodeSpace: touchLocation];
         
         //Check if Letters boundingBox is in relative touch location
         if(CGRectContainsPoint(boundingBox, touchLocationRelativeToShape)){
             newSprite = sprite;
+            NSLog(@"1 - In Box");
             break;
+        }else{
+            NSLog(@"2 - Not In Box");
         }
     }
     
