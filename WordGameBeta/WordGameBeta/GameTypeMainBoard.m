@@ -81,15 +81,6 @@
  1 = col (NSNumber)
  2 = row (NSNumber)
  */
-
-/* 
-2:2
-3:4
-4:6
-5:9
-6:12
-7:16
-*/
 - (void)changeTilesForActiveLetters:(NSString *)specialAbility{
    
     NSMutableArray *tilesToChange = [[NSMutableArray alloc] init];
