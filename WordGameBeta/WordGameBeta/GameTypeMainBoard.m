@@ -3,28 +3,21 @@
 #import "GameTypeMainPlayArea.h"
 
 @implementation GameTypeMainBoard
-@synthesize boardLayer1, boardLayer2, boardArray1, boardArray2, boardLetters;
+@synthesize boardLayer, boardArray, boardLetters;
 
 
 - (GameTypeMainBoard*)initWithBoard:(NSString *)World{
     
     self = [super initWithFile:@"board_background.png" rect:CGRectMake(0, 0, boardWidth, boardHeight)];
     
-    boardLayer1 = [CCSprite spriteWithFile:@"no_background.png" rect:CGRectMake(0, 0, boardWidth, boardHeight)];
-    boardLayer2 = [CCSprite spriteWithFile:@"no_background.png" rect:CGRectMake(0, 0, boardWidth, boardHeight)];
+    boardLayer = [CCSprite spriteWithFile:@"no_background.png" rect:CGRectMake(0, 0, boardWidth, boardHeight)];
+    boardLayer.anchorPoint = ccp(0,0);
     
-    boardLayer1.anchorPoint = ccp(0,0);
-    boardLayer2.anchorPoint = ccp(0,0);
-    
-    /* Board Array 1 and 2 are 2DArrays */
-    boardArray1 = [[NSMutableArray alloc] init];
-    boardArray2 = [[NSMutableArray alloc] init];
-    
+    /* Board Array is a 2DArrays */
+    boardArray = [[NSMutableArray alloc] init];
     boardLetters = [[NSMutableArray alloc] init];
     
-    [self addChild: boardLayer2];
-    [self addChild: boardLayer1];
-    
+    [self addChild: boardLayer];
     
     [self createStartingBoard];
     
@@ -63,8 +56,7 @@
  
     for( int c = 0; c <  (boardHeight / tileSize); c++){
         
-        NSMutableArray *colArray1 = [[NSMutableArray alloc]init];
-        NSMutableArray *colArray2 = [[NSMutableArray alloc]init];
+        NSMutableArray *colArray = [[NSMutableArray alloc]init];
         
         for (int r = 0; r < (boardWidth / tileSize); r++) {
             
@@ -82,18 +74,12 @@
            
             GameTypeMainTile *newTile1 = [[[GameTypeMainTile alloc] initWithFile:image1 isUsable:useable1] autorelease];
             newTile1.position =  ccp((tileSize*r), (((tileSize*c)*-1)+boardHeight-tileSize));
-            [boardLayer1 addChild: newTile1];
-            [colArray1 addObject:newTile1];
-            
-            GameTypeMainTile *newTile2 = [[[GameTypeMainTile alloc] initWithFile:image2 isUsable:useable2] autorelease];
-            newTile2.position =  ccp((tileSize*r), (((tileSize*c)*-1)+boardHeight-tileSize));
-            [boardLayer2 addChild: newTile2];
-            [colArray2 addObject: newTile2];
+            [boardLayer addChild: newTile1];
+            [colArray addObject:newTile1];
              
         }
         
-        [boardArray1 addObject:colArray2];
-        [boardArray2 addObject:colArray1];
+        [boardArray addObject:colArray];
     }
     
 }
@@ -237,7 +223,7 @@
     GameTypeMainTile *tile = nil;
     
     float highestValue = 2.0f;
-    for(NSMutableArray *array in boardArray2){
+    for(NSMutableArray *array in boardArray){
         for (GameTypeMainTile *sprite in array) {
             CGRect TileRect = CGRectMake(sprite.position.x, sprite.position.y, sprite.contentSize.width, sprite.contentSize.height);
             CGRect LetterRect = CGRectMake(Letter.position.x, Letter.position.y, Letter.contentSize.width, Letter.contentSize.height);
@@ -265,9 +251,9 @@
     NSMutableArray *positionArray = [[NSMutableArray alloc]init];
     
     //Build an array of positions for the letters in word array
-    for( int c = 0; c < [boardArray2 count]; c++){
+    for( int c = 0; c < [boardArray count]; c++){
         
-        NSMutableArray *colArray = [boardArray2 objectAtIndex:c];
+        NSMutableArray *colArray = [boardArray objectAtIndex:c];
         
         for (int r = 0; r < [colArray count]; r++) {
             
@@ -299,7 +285,7 @@
 
 - (GameTypeMainTile *)tileAtCol:(int)Col andRow:(int)Row{
     
-    GameTypeMainTile *returnTile = [[boardArray2 objectAtIndex:Col]  objectAtIndex:Row];
+    GameTypeMainTile *returnTile = [[boardArray objectAtIndex:Col]  objectAtIndex:Row];
     
     return returnTile;
 }

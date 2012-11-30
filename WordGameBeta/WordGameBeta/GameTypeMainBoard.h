@@ -6,17 +6,13 @@
 #import "Utils.h"
 
 @interface GameTypeMainBoard : CCSprite{
-    CCSprite *boardLayer1;
-    CCSprite *boardLayer2;
-    NSMutableArray *boardArray1;
-    NSMutableArray *boardArray2;
+    CCSprite *boardLayer;
+    NSMutableArray *boardArray;
     NSMutableArray *boardLetters;
 }
 
-@property (nonatomic, retain) CCSprite *boardLayer1;
-@property (nonatomic, retain) CCSprite *boardLayer2;
-@property (nonatomic, retain) NSMutableArray *boardArray1;
-@property (nonatomic, retain) NSMutableArray *boardArray2;
+@property (nonatomic, retain) CCSprite *boardLayer;
+@property (nonatomic, retain) NSMutableArray *boardArray;
 @property (nonatomic, retain) NSMutableArray *boardLetters;
 
 - (GameTypeMainBoard*)initWithBoard:(NSString *)World;
