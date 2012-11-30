@@ -71,22 +71,22 @@
             NSDictionary *tile = [tiles objectAtIndex:counter];
             counter++;
             
-            int starting = [[tile objectForKey:@"starting"] intValue];
+            //int starting = [[tile objectForKey:@"starting"] intValue];
             BOOL useable1 = [[tile objectForKey:@"useable1"] boolValue];
             NSString *image1 = [tile objectForKey:@"image1"];
-            NSString *special1 = [tile objectForKey:@"special1"];
+            //NSString *special1 = [tile objectForKey:@"special1"];
             
             BOOL useable2 = [[tile objectForKey:@"useable2"] boolValue];
             NSString *image2 = [tile objectForKey:@"image2"];
-            NSString *special2 = [tile objectForKey:@"special2"];
+            //NSString *special2 = [tile objectForKey:@"special2"];
            
             GameTypeMainTile *newTile1 = [[[GameTypeMainTile alloc] initWithFile:image1 isUsable:useable1] autorelease];
-            newTile1.position =  ccp((tileSize*r), (tileSize*c));
+            newTile1.position =  ccp((tileSize*r), (((tileSize*c)*-1)+boardHeight-tileSize));
             [boardLayer1 addChild: newTile1];
             [colArray1 addObject:newTile1];
             
             GameTypeMainTile *newTile2 = [[[GameTypeMainTile alloc] initWithFile:image2 isUsable:useable2] autorelease];
-            newTile2.position =  ccp((tileSize*r), (tileSize*c));
+            newTile2.position =  ccp((tileSize*r), (((tileSize*c)*-1)+boardHeight-tileSize));
             [boardLayer2 addChild: newTile2];
             [colArray2 addObject: newTile2];
              
@@ -128,15 +128,6 @@
         
         if ([specialAbility isEqual:specialUp]) {
             for(int c = 1; c <= maxDistance; c++){
-                if(col+c < tilesInRow){
-                    GameTypeMainTile *tileUpdate = [self tileAtCol:col+c andRow:row];
-                    if(![tilesToChange containsObject:tileUpdate]){
-                        [tilesToChange addObject:tileUpdate];
-                    }
-                }
-            }
-        }else if ([specialAbility isEqual:specialDown]) {
-            for(int c = 1; c <= maxDistance; c++){
                 
                 if(col-c >= 0){
                     GameTypeMainTile *tileUpdate = [self tileAtCol:col-c andRow:row];
@@ -146,7 +137,15 @@
                 }
                 
             }
-            
+        }else if ([specialAbility isEqual:specialDown]) {
+            for(int c = 1; c <= maxDistance; c++){
+                if(col+c < tilesInRow){
+                    GameTypeMainTile *tileUpdate = [self tileAtCol:col+c andRow:row];
+                    if(![tilesToChange containsObject:tileUpdate]){
+                        [tilesToChange addObject:tileUpdate];
+                    }
+                }
+            }
         }else if ([specialAbility isEqual:specialLeft]) {
             for(int r = 1; r <= maxDistance; r++){
                 
@@ -256,7 +255,7 @@
         }
     }
     
-    //NSLog(@"Highest Letter Intersect Value : %f", highestValue);
+    NSLog(@"Highest Letter Intersect Value : %f", highestValue);
     return tile;
 }
 
