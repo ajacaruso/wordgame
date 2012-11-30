@@ -63,16 +63,16 @@
             NSDictionary *tile = [tiles objectAtIndex:counter];
             counter++;
             
-            //int starting = [[tile objectForKey:@"starting"] intValue];
+            int starting = [[tile objectForKey:@"starting"] intValue];
             BOOL useable1 = [[tile objectForKey:@"useable1"] boolValue];
             NSString *image1 = [tile objectForKey:@"image1"];
-            //NSString *special1 = [tile objectForKey:@"special1"];
+            NSString *special1 = [tile objectForKey:@"special1"];
             
             BOOL useable2 = [[tile objectForKey:@"useable2"] boolValue];
             NSString *image2 = [tile objectForKey:@"image2"];
-            //NSString *special2 = [tile objectForKey:@"special2"];
+            NSString *special2 = [tile objectForKey:@"special2"];
            
-            GameTypeMainTile *newTile1 = [[[GameTypeMainTile alloc] initWithFile:image1 isUsable:useable1] autorelease];
+            GameTypeMainTile *newTile1 = [[[GameTypeMainTile alloc] initWithFile:image1 starting:starting image1:image1 isUseable1:useable1 special1:special1 image2:image2 isUseable2:useable2 special2:special2] autorelease];
             newTile1.position =  ccp((tileSize*r), (((tileSize*c)*-1)+boardHeight-tileSize));
             [boardLayer addChild: newTile1];
             [colArray addObject:newTile1];
