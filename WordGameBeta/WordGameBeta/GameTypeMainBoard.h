@@ -23,7 +23,7 @@
 - (GameTypeMainTile *) closestTileToLetter:(GameTypeMainLetter *)Letter;
 - (NSMutableArray *)generateCurrentLetterPositionArray;
 - (GameTypeMainTile *)tileAtCol:(int)Col andRow:(int)Row;
-- (void)setTileArrayState:(NSMutableArray *)tileArray To:(NSString *)state;
+- (void)setTileArrayState:(NSMutableArray *)tileArray To:(int)state;
 
 - (BOOL)checkForWord;
 - (BOOL)positionIsRowAndValidWord:(NSMutableArray *)positionArray;

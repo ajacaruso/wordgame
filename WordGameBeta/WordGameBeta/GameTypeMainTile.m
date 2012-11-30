@@ -9,13 +9,15 @@
 #import "GameTypeMainTile.h"
 
 @implementation GameTypeMainTile
-@synthesize useable, special, specialOne, specialTwo, useableOne, useableTwo;
+@synthesize currentState, useable, special, imageOne, specialOne, specialTwo, imageTwo, useableOne, useableTwo;
 
 - (GameTypeMainTile*)initWithFile:(NSString *)file starting:(int)starting image1:(NSString *)image1 isUseable1:(BOOL)isUseable1 special1:(NSString *)special1 image2:(NSString *)image2 isUseable2:(BOOL)isUseable2 special2:(NSString *)special2; {
     if ((self = [super initWithFile:file rect:CGRectMake(0, 0, 40, 40)])) {
         //After Created Run This Code
         self.anchorPoint=ccp(0,0);
         
+        imageOne = [[NSString alloc] initWithString:image1];
+        imageTwo = [[NSString alloc] initWithString:image2];
         
         specialOne = [[NSString alloc] initWithString:special1];
         specialTwo = [[NSString alloc] initWithString:special2];
@@ -23,14 +25,12 @@
         useableOne = isUseable1;
         useableTwo = isUseable2;
         
-        if(starting == 1){
-            [self setTileTexture:image1];
-            useable = isUseable1;
-            special = [[NSString alloc] initWithString:special1];
+        currentState = starting;
+        
+        if(currentState == 1){
+            [self setAsOne];
         }else{
-            [self setTileTexture:image2];
-            useable = isUseable2;
-            special = [[NSString alloc] initWithString:special2];
+            [self setAsTwo];
         }
         
     }
@@ -47,6 +47,13 @@
     return useable;
 }
 
+- (void)setCurrentState:(int)state{
+    currentState = state;
+}
+- (int)getCurrentState{
+    return currentState;
+}
+
 - (void)setSpecial:(NSString *)newSpecial{
     special = newSpecial;
 }
@@ -60,9 +67,26 @@
     [self setTexture: tex];
 }
 
-- (void)setAsEmpty{
-    [self setUseable:YES];
-    [self setTileTexture:@"no_background.png"];
+- (void)setStateTo:(int)state{
+    if(state == 1){
+        [self setAsOne];
+    }else if(state == 2){
+        [self setAsTwo];
+    }
+}
+
+-(void)setAsOne{
+    [self setCurrentState:1];
+    [self setTileTexture:imageOne];
+    [self setUseable:useableOne];
+    [self setSpecial:specialOne];
+}
+
+-(void)setAsTwo{
+    [self setCurrentState:2];
+    [self setTileTexture:imageTwo];
+    [self setUseable:useableTwo];
+    [self setSpecial:specialTwo];
 }
 
 @end

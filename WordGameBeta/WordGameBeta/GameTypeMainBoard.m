@@ -156,7 +156,7 @@
         }
     }
     
-    [self setTileArrayState:tilesToChange To:@"empty"];
+    [self setTileArrayState:tilesToChange To:2];
     
     NSLog(@"Tiles in Array %d, maxDistance Value is : %d, Changed Tiles : %d, Ability is : %@", [positionArray count], maxDistance, [tilesToChange count], specialAbility);
 }
@@ -290,12 +290,9 @@
     return returnTile;
 }
 
-- (void)setTileArrayState:(NSMutableArray *)tileArray To:(NSString *)state{
-    
-    if(state == @"empty"){
-        for(GameTypeMainTile *tile in tileArray){
-            [tile setAsEmpty];
-        }
+- (void)setTileArrayState:(NSMutableArray *)tileArray To:(int)state{
+    for(GameTypeMainTile *tile in tileArray){
+        [tile setStateTo:state];
     }
 }
 
