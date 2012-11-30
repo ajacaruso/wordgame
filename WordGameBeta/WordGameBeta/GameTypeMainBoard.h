@@ -21,6 +21,7 @@
 
 - (GameTypeMainBoard*)initWithBoard:(NSString *)World;
 - (void) createStartingBoard;
+- (void) addTiles:(NSDictionary *)board;
 - (BOOL) addLetterToBoard:(GameTypeMainLetter *)Letter;
 
 - (GameTypeMainTile *) closestTileToLetter:(GameTypeMainLetter *)Letter;

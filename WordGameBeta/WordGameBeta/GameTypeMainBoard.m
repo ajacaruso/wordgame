@@ -22,8 +22,9 @@
     
     boardLetters = [[NSMutableArray alloc] init];
     
-    [self addChild: boardLayer1];
     [self addChild: boardLayer2];
+    [self addChild: boardLayer1];
+    
     
     [self createStartingBoard];
     
@@ -33,45 +34,69 @@
 #pragma mark - Create / Modify Board Layers
 
 - (void) createStartingBoard{
+    NSDictionary *startingLevel = [[NSDictionary alloc] init];
+    NSError *error;
     
-    //Create Layer 1
+    startingLevel = [NSJSONSerialization
+              JSONObjectWithData:[NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"gametypemain_1" ofType:@"json"]]
+              options:kNilOptions
+              error:&error];
+    
+    [self addTiles: startingLevel];
+    
+}
+
+
+- (void) addTiles:(NSDictionary *)board{
+
+    /* Could pull / set info, but for now using Constants
+    
+    int boardId = [[board objectForKey:@"tileArray"] intValue];
+    int rowSize = [[board objectForKey:@"rowSize"] intValue];
+    NSString *isUseable = [board objectForKey:@"useable"];
+     
+    */
+
+    NSMutableArray *tiles = [[NSMutableArray alloc] init];
+    int counter = 0;
+    tiles = [board objectForKey:@"tiles"];
+ 
     for( int c = 0; c <  (boardHeight / tileSize); c++){
         
-         NSMutableArray *colArray = [[NSMutableArray alloc]init];
-        
-        for (int r = 0; r < (boardWidth / tileSize); r++) {
-            GameTypeMainTile *newTile = [[[GameTypeMainTile alloc] initWithFile:@"no_background.png" isUsable:YES] autorelease];
-            newTile.position =  ccp((tileSize*r), (tileSize*c));
-            [boardLayer1 addChild: newTile];
-            [colArray addObject:newTile];
-        }
-        [boardArray1 addObject: colArray];
-    }
-    
-    //Create Layer 2
-    for( int c = 0; c <  (boardHeight / tileSize); c++){
-        
-        NSMutableArray *colArray = [[NSMutableArray alloc]init];
+        NSMutableArray *colArray1 = [[NSMutableArray alloc]init];
+        NSMutableArray *colArray2 = [[NSMutableArray alloc]init];
         
         for (int r = 0; r < (boardWidth / tileSize); r++) {
             
-            if(c < ((boardHeight / tileSize)-3) || r > 2){
-                GameTypeMainTile *newTile = [[[GameTypeMainTile alloc] initWithFile:@"BrownTile.png" isUsable:NO] autorelease];
-                newTile.position =  ccp((tileSize*r), (tileSize*c));
-                [boardLayer2 addChild: newTile];
-                [colArray addObject: newTile];
-            }else{
-                //Leave Blank
-                GameTypeMainTile *newTile = [[[GameTypeMainTile alloc] initWithFile:@"no_background.png" isUsable:YES] autorelease];
-                newTile.position =  ccp((tileSize*r), (tileSize*c));
-                [boardLayer2 addChild: newTile];
-                [colArray addObject: newTile];
-            }
+            NSDictionary *tile = [tiles objectAtIndex:counter];
+            counter++;
+            
+            int starting = [[tile objectForKey:@"starting"] intValue];
+            BOOL useable1 = [[tile objectForKey:@"useable1"] boolValue];
+            NSString *image1 = [tile objectForKey:@"image1"];
+            NSString *special1 = [tile objectForKey:@"special1"];
+            
+            BOOL useable2 = [[tile objectForKey:@"useable2"] boolValue];
+            NSString *image2 = [tile objectForKey:@"image2"];
+            NSString *special2 = [tile objectForKey:@"special2"];
+           
+            GameTypeMainTile *newTile1 = [[[GameTypeMainTile alloc] initWithFile:image1 isUsable:useable1] autorelease];
+            newTile1.position =  ccp((tileSize*r), (tileSize*c));
+            [boardLayer1 addChild: newTile1];
+            [colArray1 addObject:newTile1];
+            
+            GameTypeMainTile *newTile2 = [[[GameTypeMainTile alloc] initWithFile:image2 isUsable:useable2] autorelease];
+            newTile2.position =  ccp((tileSize*r), (tileSize*c));
+            [boardLayer2 addChild: newTile2];
+            [colArray2 addObject: newTile2];
+             
         }
-        [boardArray2 addObject:colArray];
+        
+        [boardArray1 addObject:colArray2];
+        [boardArray2 addObject:colArray1];
     }
+    
 }
-
 //Remove Tiles within a radius of the letter positions
 /* 
  Position Array:
