@@ -47,6 +47,10 @@
     return useable;
 }
 
+- (BOOL)getUseableTwo{
+    return useableTwo;
+}
+
 - (void)setCurrentState:(int)state{
     currentState = state;
 }

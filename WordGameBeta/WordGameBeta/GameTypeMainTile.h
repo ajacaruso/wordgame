@@ -28,6 +28,7 @@
 - (GameTypeMainTile*)initWithFile:(NSString *)file starting:(int)starting image1:(NSString *)image1 isUseable1:(BOOL)isUseable1 special1:(NSString *)special1 image2:(NSString *)image2 isUseable2:(BOOL)isUseable2 special2:(NSString *)special2;
 - (void)setUseable:(BOOL)newUseable;
 - (BOOL)getUseable;
+- (BOOL)getUseableTwo;
 - (void)setCurrentState:(int)state;
 - (int)getCurrentState;
 - (void)setSpecial:(NSString *)newSpecial;

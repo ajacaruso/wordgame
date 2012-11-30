@@ -101,11 +101,12 @@
     NSMutableArray *positionArray = [self generateCurrentLetterPositionArray];
     
     int maxDistance = ceil([positionArray count]/2.0);
-    
+   
     
     for(NSMutableArray *objectArray in positionArray){
         int col = [[objectArray objectAtIndex:1] intValue];
         int row = [[objectArray objectAtIndex:2] intValue];
+        bool isBlocked = false;
         
         GameTypeMainTile *tileCurrent = [self tileAtCol:col andRow:row];
         if(![tilesToChange containsObject:tileCurrent]){
@@ -114,42 +115,51 @@
         
         if ([specialAbility isEqual:specialUp]) {
             for(int c = 1; c <= maxDistance; c++){
-                
-                if(col-c >= 0){
+                if(col-c >= 0 && !isBlocked){
                     GameTypeMainTile *tileUpdate = [self tileAtCol:col-c andRow:row];
                     if(![tilesToChange containsObject:tileUpdate]){
                         [tilesToChange addObject:tileUpdate];
+                    }
+                    if(![tileUpdate getUseableTwo]){
+                        isBlocked = true;
                     }
                 }
                 
             }
         }else if ([specialAbility isEqual:specialDown]) {
             for(int c = 1; c <= maxDistance; c++){
-                if(col+c < tilesInRow){
+                if(col+c < tilesInRow && !isBlocked){
                     GameTypeMainTile *tileUpdate = [self tileAtCol:col+c andRow:row];
                     if(![tilesToChange containsObject:tileUpdate]){
                         [tilesToChange addObject:tileUpdate];
+                    }
+                    if(![tileUpdate getUseableTwo]){
+                        isBlocked = true;
                     }
                 }
             }
         }else if ([specialAbility isEqual:specialLeft]) {
             for(int r = 1; r <= maxDistance; r++){
-                
-                if(row-r >= 0){
+                if(row-r >= 0 && !isBlocked){
                     GameTypeMainTile *tileUpdate = [self tileAtCol:col andRow:row-r];
                     if(![tilesToChange containsObject:tileUpdate]){
                         [tilesToChange addObject:tileUpdate];
+                    }
+                    if(![tileUpdate getUseableTwo]){
+                        isBlocked = true;
                     }
                 }
                 
             }
         }else if ([specialAbility isEqual:specialRight]) {
-            
              for(int r = 1; r <= maxDistance; r++){
-                 if(row+r < tilesInRow){
+                 if(row+r < tilesInRow && !isBlocked){
                      GameTypeMainTile *tileUpdate = [self tileAtCol:col andRow:row+r];
                      if(![tilesToChange containsObject:tileUpdate]){
                          [tilesToChange addObject:tileUpdate];
+                     }
+                     if(![tileUpdate getUseableTwo]){
+                         isBlocked = true;
                      }
                  }
              }
