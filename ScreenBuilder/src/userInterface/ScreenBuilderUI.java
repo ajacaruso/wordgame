@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package userInterface;
 
 /**
@@ -26,29 +22,67 @@ public class ScreenBuilderUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainPane = new javax.swing.JSplitPane();
         sidebarPane = new javax.swing.JSplitPane();
         spritePane = new javax.swing.JScrollPane();
         propertyPane = new javax.swing.JScrollPane();
-        sidebarSeparator = new javax.swing.JSeparator();
+        propertyTable = new javax.swing.JTable();
+        editorPane = new javax.swing.JScrollPane();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        fileImportItem = new javax.swing.JMenuItem();
+        fileExportItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        helpUsageItem = new javax.swing.JMenuItem();
+        helpAboutItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Screen Builder");
+
+        mainPane.setDividerLocation(500);
 
         sidebarPane.setDividerLocation(500);
         sidebarPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         sidebarPane.setTopComponent(spritePane);
+
+        propertyTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Value"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        propertyPane.setViewportView(propertyTable);
+
         sidebarPane.setRightComponent(propertyPane);
 
-        sidebarSeparator.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        sidebarSeparator.setToolTipText("");
+        mainPane.setRightComponent(sidebarPane);
+        mainPane.setLeftComponent(editorPane);
 
         fileMenu.setMnemonic('F');
         fileMenu.setText("File");
+
+        fileImportItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        fileImportItem.setMnemonic('I');
+        fileImportItem.setText("Import");
+        fileMenu.add(fileImportItem);
+
+        fileExportItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        fileExportItem.setMnemonic('E');
+        fileExportItem.setText("Export");
+        fileExportItem.setToolTipText("");
+        fileMenu.add(fileExportItem);
+
         mainMenuBar.add(fileMenu);
 
         editMenu.setMnemonic('E');
@@ -58,14 +92,14 @@ public class ScreenBuilderUI extends javax.swing.JFrame {
         helpMenu.setMnemonic('H');
         helpMenu.setText("Help");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setMnemonic('H');
-        jMenuItem1.setText("How to Use");
-        helpMenu.add(jMenuItem1);
+        helpUsageItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        helpUsageItem.setMnemonic('H');
+        helpUsageItem.setText("How to Use");
+        helpMenu.add(helpUsageItem);
 
-        jMenuItem2.setMnemonic('A');
-        jMenuItem2.setText("About");
-        helpMenu.add(jMenuItem2);
+        helpAboutItem.setMnemonic('A');
+        helpAboutItem.setText("About");
+        helpMenu.add(helpAboutItem);
 
         mainMenuBar.add(helpMenu);
 
@@ -75,21 +109,13 @@ public class ScreenBuilderUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(560, Short.MAX_VALUE)
-                .addComponent(sidebarSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(sidebarPane, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sidebarPane, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
-                    .addComponent(sidebarSeparator))
-                .addContainerGap())
+            .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
         );
 
         pack();
@@ -131,14 +157,18 @@ public class ScreenBuilderUI extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu editMenu;
+    private javax.swing.JScrollPane editorPane;
+    private javax.swing.JMenuItem fileExportItem;
+    private javax.swing.JMenuItem fileImportItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuItem helpAboutItem;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem helpUsageItem;
     private javax.swing.JMenuBar mainMenuBar;
+    private javax.swing.JSplitPane mainPane;
     private javax.swing.JScrollPane propertyPane;
+    private javax.swing.JTable propertyTable;
     private javax.swing.JSplitPane sidebarPane;
-    private javax.swing.JSeparator sidebarSeparator;
     private javax.swing.JScrollPane spritePane;
     // End of variables declaration//GEN-END:variables
 }
