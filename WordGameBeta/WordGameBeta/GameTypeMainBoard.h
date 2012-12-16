@@ -9,11 +9,13 @@
     CCSprite *boardLayer;
     NSMutableArray *boardArray;
     NSMutableArray *boardLetters;
+    int boardOffset;
 }
 
 @property (nonatomic, retain) CCSprite *boardLayer;
 @property (nonatomic, retain) NSMutableArray *boardArray;
 @property (nonatomic, retain) NSMutableArray *boardLetters;
+@property (nonatomic, assign) int boardOffset;
 
 - (GameTypeMainBoard*)initWithBoard:(NSString *)World;
 - (void) createStartingBoard;
@@ -30,4 +32,8 @@
 - (BOOL)positionIsColAndValidWord:(NSMutableArray *)positionArray;
 - (void)changeTilesForActiveLetters:(NSString *)specialAbility;
 - (void)removeAllLetters;
+
+- (void) setBoardMoveOffset:(int)newOffset;
+- (void) addBoardMoveOffset:(int)addNumber;
+- (int) getBoardMoveOffset;
 @end
