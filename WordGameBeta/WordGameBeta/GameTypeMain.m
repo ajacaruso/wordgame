@@ -19,6 +19,9 @@
         playArea.anchorPoint = ccp(0,0);
         playArea.position = ccp(0, gameControlls.contentSize.height);
         [self addChild:playArea z:1];
+        
+        //Set Timers
+        //[self schedule:@selector(moveBoard:) interval:boardScrollRate];
     }
 	return self;
 }
@@ -47,6 +50,26 @@
 }
 
 #pragma mark - Move Events / Functions
+
+- (void)moveBoard:(ccTime)dt{
+    CCSprite *theBoard = playArea.gameBoard.boardLayer;
+    int newX = theBoard.position.x;
+    int newY = theBoard.position.y + tileSize;
+    // Create the actions
+    CCMoveTo * actionMove = [CCMoveTo actionWithDuration:1 position:ccp(newX, newY)];
+    CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+        //[_monsters removeObject:node];
+        //[node removeFromParentAndCleanup:YES];
+        
+        //CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
+        //[[CCDirector sharedDirector] replaceScene:gameOverScene];
+        
+    }];
+    //[theBoard runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+    //[theBoard setShouldGroupAccessibilityChildren:NO];
+    theBoard.position = ccp(newX, newY);
+    
+}
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
     
@@ -87,7 +110,7 @@
                 
             }else if([self spriteIsInBoard:selLetter]){
                 
-                [self changeContainerOfSprite:selLetter to:playArea.gameBoard];
+                [self changeContainerOfSprite:selLetter to:playArea.gameBoard.boardLayer];
                 
                 //If Can't Be Placed On Board Return to WordBank
                 if(![playArea.gameBoard addLetterToBoard:selLetter]){
@@ -205,9 +228,9 @@
     // NSLog(@"Offset Container %f - Parent %f ",  container.position.y, sprite.parent.position.y);
     
     //Calcualte X/Y Offset for Board / WB / PlayArea 
-    if(container == playArea.gameBoard && sprite.parent == playArea){
+    if(container == playArea.gameBoard.boardLayer && sprite.parent == playArea){
         [sprite setPosition:ccp(sprite.position.x, sprite.position.y-playArea.wordBank.contentSize.height)];
-    }else if(container == playArea && sprite.parent == playArea.gameBoard){
+    }else if(container == playArea && sprite.parent == playArea.gameBoard.boardLayer){
         [sprite setPosition:ccp(sprite.position.x, sprite.position.y+playArea.wordBank.contentSize.height)];
     }else{
         [sprite setPosition:ccp(sprite.position.x, sprite.position.y)];

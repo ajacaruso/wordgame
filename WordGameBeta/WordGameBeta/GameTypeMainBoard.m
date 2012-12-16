@@ -235,16 +235,36 @@
     float highestValue = 2.0f;
     for(NSMutableArray *array in boardArray){
         for (GameTypeMainTile *sprite in array) {
-            CGRect TileRect = CGRectMake(sprite.position.x, sprite.position.y, sprite.contentSize.width, sprite.contentSize.height);
-            CGRect LetterRect = CGRectMake(Letter.position.x, Letter.position.y, Letter.contentSize.width, Letter.contentSize.height);
+            //CGRect TileRect = CGRectMake(sprite.position.x, sprite.position.y, sprite.contentSize.width, sprite.contentSize.height);
+            //CGRect LetterRect = CGRectMake(Letter.position.x, Letter.position.y, Letter.contentSize.width, Letter.contentSize.height);
             
+            
+            //CGRect TileRect = sprite.boundingBox;
+            //CGRect LetterRect = Letter.boundingBox;
+            
+            //CGRect TileRect = sprite.boundingBox;
+            //CGRect LetterRect = CGRectMake(Letter.position.x, Letter.position.y, Letter.contentSize.width, Letter.contentSize.height);
+            
+            //CGRect TileRect = CGRectMake(sprite.position.x, sprite.position.y, sprite.contentSize.width, sprite.contentSize.height);
+            //CGRect LetterRect = [Letter boundingBox];
+            
+            CGPoint worldPointL = [Letter convertToWorldSpace:Letter.position];
+            CGRect LetterRect = [Letter boundingBox];
+            LetterRect.origin = worldPointL;
+            
+            CGPoint worldPointT = [sprite convertToWorldSpace:sprite.position];
+            CGRect TileRect = [sprite boundingBox];
+            TileRect.origin = worldPointT;
+
             //Check On Letter
             if (CGRectIntersectsRect(TileRect, LetterRect)) {
                 float interSectionNumber = CGRectGetWidth(CGRectIntersection(TileRect, LetterRect)) * CGRectGetHeight(CGRectIntersection(TileRect, LetterRect));
                 
-                if(highestValue <= interSectionNumber){
+                if(highestValue <= interSectionNumber && [sprite getUseable]){
                     tile = sprite;
                     highestValue = interSectionNumber;
+                    NSLog(@"X1: %f, Y1: %f, X2: %f, Y2: %f", sprite.position.x, sprite.position.y, Letter.position.x, Letter.position.y);
+                    
                 }
             }
             

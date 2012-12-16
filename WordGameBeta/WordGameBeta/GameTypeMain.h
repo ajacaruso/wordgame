@@ -5,7 +5,7 @@
 //  Created by Adam Jacaruso on 9/13/12.
 //
 //
-
+#import <GameKit/GameKit.h>
 #import "cocos2d.h"
 #import "GameTypeMainPlayArea.h"
 #import "GameTypeMainControlls.h"
@@ -31,6 +31,7 @@
 - (void)openMenu;
 - (void)closeMenu;
 - (void)submitWord:(NSString *)specialAbility;
+- (void)moveBoard:(ccTime)dt;
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer;
 - (void)selectSpriteForTouch:(CGPoint)touchLocation;
 - (void)panForTranslation:(CGPoint)translation;
