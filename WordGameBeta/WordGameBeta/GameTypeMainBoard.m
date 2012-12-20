@@ -3,7 +3,7 @@
 #import "GameTypeMainPlayArea.h"
 
 @implementation GameTypeMainBoard
-@synthesize boardLayer, boardArray, boardLetters, boardOffset;
+@synthesize boardLayer, boardArray, boardLetters, boardOffset, currentC, currentR;
 
 
 - (GameTypeMainBoard*)initWithBoard:(NSString *)World{
@@ -16,6 +16,9 @@
     /* Board Array is a 2DArrays */
     boardArray = [[NSMutableArray alloc] init];
     boardLetters = [[NSMutableArray alloc] init];
+    
+    currentC = 0;
+    currentR = 0;
     
     [self addChild: boardLayer];
     
@@ -35,7 +38,8 @@
               options:kNilOptions
               error:&error];
     
-    [self addTiles: startingLevel];
+    //[self addTiles: startingLevel];
+    //[self addTiles: startingLevel];
     
 }
 
@@ -53,12 +57,15 @@
     NSMutableArray *tiles = [[NSMutableArray alloc] init];
     int counter = 0;
     tiles = [board objectForKey:@"tiles"];
- 
-    for( int c = 0; c <  (boardHeight / tileSize); c++){
+    int updateCurrentC = 0;
+    int updateCurrentR = 0;
+    
+    
+    for( int c = 0; c <  ([tiles count] / tilesInRow); c++){
         
         NSMutableArray *colArray = [[NSMutableArray alloc]init];
         
-        for (int r = 0; r < (boardWidth / tileSize); r++) {
+        for (int r = 0; r < tilesInRow; r++) {
             
             NSDictionary *tile = [tiles objectAtIndex:counter];
             counter++;
@@ -73,14 +80,22 @@
             NSString *special2 = [tile objectForKey:@"special2"];
            
             GameTypeMainTile *newTile1 = [[[GameTypeMainTile alloc] initWithFile:image1 starting:starting image1:image1 isUseable1:useable1 special1:special1 image2:image2 isUseable2:useable2 special2:special2] autorelease];
-            newTile1.position =  ccp((tileSize*r), (((tileSize*c)*-1)+boardHeight-tileSize));
+            newTile1.position =  ccp((tileSize*(r + currentR)), (((tileSize*(c + currentC))*-1)+boardHeight-tileSize));
             [boardLayer addChild: newTile1];
             [colArray addObject:newTile1];
+            
+            updateCurrentR++;
              
         }
-        
+        updateCurrentC++;
         [boardArray addObject:colArray];
     }
+    
+    //Set Col and Row For Next JSON
+    currentC += updateCurrentC;
+    currentR += updateCurrentR;
+    
+    NSLog(@"currentC : %d, currentR : %d", currentC, currentR);
     
 }
 //Remove Tiles within a radius of the letter positions
@@ -247,7 +262,7 @@
                 if(highestValue <= interSectionNumber && [sprite getUseable]){
                     tile = sprite;
                     highestValue = interSectionNumber;
-                    NSLog(@"X1: %f, Y1: %f, X2: %f, Y2: %f", sprite.position.x, sprite.position.y, Letter.position.x, Letter.position.y);
+                    //NSLog(@"X1: %f, Y1: %f, X2: %f, Y2: %f", sprite.position.x, sprite.position.y, Letter.position.x, Letter.position.y);
                 }
             }
         }

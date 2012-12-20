@@ -1,42 +1,43 @@
 {
-    "id": 1,
-    "name": "Board1",
+    "id": 2,
+    "name": "Board2",
     "rowSize": 8,
     "tiles":
     [
-     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     
-     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
-     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "no_background.png", "useable1": "true", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "BlueTile.png", "useable2": "false", "special2": "none"},
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "BlueTile.png", "useable2": "false", "special2": "none"},
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "BlueTile.png", "useable2": "false", "special2": "none"},
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "BlueTile.png", "useable2": "false", "special2": "none"},
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
+     {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      
@@ -76,5 +77,5 @@
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"},
      {"starting": 1, "image1": "BrownTile.png", "useable1": "false", "special1": "none", "image2": "no_background.png", "useable2": "true", "special2": "none"}
      
-    ]
+     ]
 }

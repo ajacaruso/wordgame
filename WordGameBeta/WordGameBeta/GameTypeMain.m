@@ -8,17 +8,20 @@
 -(id) init
 {
 	if( (self=[super init])) {
+        
         //Build Game Controlls
         gameControlls = [[[GameTypeMainControlls alloc] initWithControlls:@"Controlls" withManager:self] autorelease];
         gameControlls.anchorPoint = ccp(0,0);
         gameControlls.position = ccp(0,0);
-        [self addChild:gameControlls z:1];
         
         //Build Play Area
         playArea = [[GameTypeMainPlayArea alloc] initPlayArea];
         playArea.anchorPoint = ccp(0,0);
         playArea.position = ccp(0, gameControlls.contentSize.height);
+        
+        //Add Game Controlls on top of play area to hide tiles.
         [self addChild:playArea z:1];
+        [self addChild:gameControlls z:1];
         
         //Set Timers
         [self schedule:@selector(moveBoard:) interval:boardScrollRate];
