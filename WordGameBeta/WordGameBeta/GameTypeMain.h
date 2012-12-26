@@ -20,6 +20,7 @@
     GameTypeMainControlls *gameControlls;
     GameTypeMainLetter *selLetter;
     CGPoint lastDragPoint;
+    int currentResetPoint;
 }
 
 @property (nonatomic, retain) CCMenu *backMenu;
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) GameTypeMainControlls *gameControlls;
 @property (nonatomic, retain) GameTypeMainLetter *selLetter;
 @property (assign) CGPoint lastDragPoint;
+@property (nonatomic, assign) int currentResetPoint;
 
 - (void)openMenu;
 - (void)closeMenu;
@@ -36,6 +38,7 @@
 - (void)selectSpriteForTouch:(CGPoint)touchLocation;
 - (void)panForTranslation:(CGPoint)translation;
 
+- (void)checkMoveCompleted;
 - (BOOL)spriteIsInPlayArea:(CCSprite *)sprite;
 - (BOOL)spriteIsInWordBank:(CCSprite *)sprite;
 - (BOOL)spriteIsInBoard:(CCSprite *)sprite;

@@ -21,6 +21,8 @@
 
 - (GameTypeMainBoard*)initWithBoard:(NSString *)World;
 - (void) createStartingBoard;
+- (void)addRandomLevel;
+- (void)addStartingLevel;
 - (void) addTiles:(NSDictionary *)board;
 - (BOOL) addLetterToBoard:(GameTypeMainLetter *)Letter;
 

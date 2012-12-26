@@ -29,16 +29,23 @@
 #pragma mark - Create / Modify Board Layers
 
 - (void) createStartingBoard{
-    NSDictionary *startingLevel = [[NSDictionary alloc] init];
+   
+    [self addStartingLevel];
+    [self addRandomLevel];
+    
+}
+
+- (void)addRandomLevel{
     NSDictionary *randomLevel = [[NSDictionary alloc] init];
-    
     randomLevel = [Utils getRandomLevel];
-    startingLevel = [Utils getLevel:@"gametypemain_1"];
-    
-    [self addTiles: startingLevel];
     [self addTiles: randomLevel];
 }
 
+- (void)addStartingLevel{
+    NSDictionary *startingLevel = [[NSDictionary alloc] init];
+    startingLevel = [Utils getLevel:@"gametypemain_1"];
+    [self addTiles: startingLevel];
+}
 
 - (void) addTiles:(NSDictionary *)board{
 
@@ -80,7 +87,7 @@
             [colArray addObject:newTile1];
             
             
-            NSLog(@"posX : %f, posY : %f", newTile1.position.x , newTile1.position.y);
+            //NSLog(@"posX : %f, posY : %f", newTile1.position.x , newTile1.position.y);
             
         }
         updateCurrentC++;
@@ -90,8 +97,7 @@
     //Set Col Next JSON
     currentC += updateCurrentC;
     
-    NSLog(@"currentC : %d", currentC);
-    
+    //NSLog(@"currentC : %d", currentC);
 }
 //Remove Tiles within a radius of the letter positions
 /* 

@@ -3,7 +3,7 @@
 
 
 @implementation GameTypeMain
-@synthesize backMenu, playArea, gameControlls, selLetter, lastDragPoint;
+@synthesize backMenu, playArea, gameControlls, selLetter, lastDragPoint, currentResetPoint;
 
 -(id) init
 {
@@ -22,6 +22,8 @@
         //Add Game Controlls on top of play area to hide tiles.
         [self addChild:playArea z:1];
         [self addChild:gameControlls z:1];
+        
+        currentResetPoint = 0;
         
         //Set Timers
         [self schedule:@selector(moveBoard:) interval:boardScrollRate];
@@ -62,9 +64,9 @@
     CCMoveTo * actionMove = [CCMoveTo actionWithDuration:1 position:ccp(newX, newY)];
     CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
         [playArea.gameBoard addBoardMoveOffset:tileSize];
+        [self checkMoveCompleted];
     }];
     [theBoard runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
-    //theBoard.position = ccp(newX, newY);
 }
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
@@ -172,6 +174,17 @@
         
     }else{
         selLetter = nil;
+    }
+}
+
+#pragma mark - Game Logic
+
+- (void)checkMoveCompleted{
+    if(currentResetPoint > tilesInRow){
+        currentResetPoint++;
+    }else{
+        currentResetPoint = 0;
+        [playArea.gameBoard addRandomLevel];
     }
 }
 
