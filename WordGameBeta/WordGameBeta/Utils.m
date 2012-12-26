@@ -40,4 +40,32 @@
     return [UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:word];;
 }
 
++(NSDictionary *)getRandomLevel{
+    NSDictionary *randomLevel = [[NSDictionary alloc] init];
+    
+    NSError *error;
+    
+    randomLevel = [NSJSONSerialization
+                     JSONObjectWithData:[NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"gametypemain_2" ofType:@"json"]]
+                     options:kNilOptions
+                     error:&error];
+    
+    return randomLevel;
+    
+}
+
++(NSDictionary *)getLevel:(NSString *)level{
+    NSDictionary *newLevel = [[NSDictionary alloc] init];
+    
+    NSError *error;
+    
+    newLevel = [NSJSONSerialization
+                   JSONObjectWithData:[NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:level ofType:@"json"]]
+                   options:kNilOptions
+                   error:&error];
+    
+    return newLevel;
+    
+}
+
 @end

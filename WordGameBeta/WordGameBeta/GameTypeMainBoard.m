@@ -3,7 +3,7 @@
 #import "GameTypeMainPlayArea.h"
 
 @implementation GameTypeMainBoard
-@synthesize boardLayer, boardArray, boardLetters, boardOffset, currentC, currentR;
+@synthesize boardLayer, boardArray, boardLetters, boardOffset, currentC;
 
 
 - (GameTypeMainBoard*)initWithBoard:(NSString *)World{
@@ -18,7 +18,6 @@
     boardLetters = [[NSMutableArray alloc] init];
     
     currentC = 0;
-    currentR = 0;
     
     [self addChild: boardLayer];
     
@@ -31,16 +30,13 @@
 
 - (void) createStartingBoard{
     NSDictionary *startingLevel = [[NSDictionary alloc] init];
-    NSError *error;
+    NSDictionary *randomLevel = [[NSDictionary alloc] init];
     
-    startingLevel = [NSJSONSerialization
-              JSONObjectWithData:[NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"gametypemain_1" ofType:@"json"]]
-              options:kNilOptions
-              error:&error];
+    randomLevel = [Utils getRandomLevel];
+    startingLevel = [Utils getLevel:@"gametypemain_1"];
     
-    //[self addTiles: startingLevel];
-    //[self addTiles: startingLevel];
-    
+    [self addTiles: startingLevel];
+    [self addTiles: randomLevel];
 }
 
 
@@ -58,7 +54,6 @@
     int counter = 0;
     tiles = [board objectForKey:@"tiles"];
     int updateCurrentC = 0;
-    int updateCurrentR = 0;
     
     
     for( int c = 0; c <  ([tiles count] / tilesInRow); c++){
@@ -80,22 +75,22 @@
             NSString *special2 = [tile objectForKey:@"special2"];
            
             GameTypeMainTile *newTile1 = [[[GameTypeMainTile alloc] initWithFile:image1 starting:starting image1:image1 isUseable1:useable1 special1:special1 image2:image2 isUseable2:useable2 special2:special2] autorelease];
-            newTile1.position =  ccp((tileSize*(r + currentR)), (((tileSize*(c + currentC))*-1)+boardHeight-tileSize));
+            newTile1.position =  ccp((tileSize*r), (((tileSize*(c + currentC))*-1)+boardHeight-tileSize));
             [boardLayer addChild: newTile1];
             [colArray addObject:newTile1];
             
-            updateCurrentR++;
-             
+            
+            NSLog(@"posX : %f, posY : %f", newTile1.position.x , newTile1.position.y);
+            
         }
         updateCurrentC++;
         [boardArray addObject:colArray];
     }
     
-    //Set Col and Row For Next JSON
+    //Set Col Next JSON
     currentC += updateCurrentC;
-    currentR += updateCurrentR;
     
-    NSLog(@"currentC : %d, currentR : %d", currentC, currentR);
+    NSLog(@"currentC : %d", currentC);
     
 }
 //Remove Tiles within a radius of the letter positions

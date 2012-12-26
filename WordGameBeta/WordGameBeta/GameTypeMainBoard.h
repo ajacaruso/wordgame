@@ -11,7 +11,6 @@
     NSMutableArray *boardLetters;
     int boardOffset;
     int currentC;
-    int currentR;
 }
 
 @property (nonatomic, retain) CCSprite *boardLayer;
@@ -19,7 +18,6 @@
 @property (nonatomic, retain) NSMutableArray *boardLetters;
 @property (nonatomic, assign) int boardOffset;
 @property (nonatomic, assign) int currentC;
-@property (nonatomic, assign) int currentR;
 
 - (GameTypeMainBoard*)initWithBoard:(NSString *)World;
 - (void) createStartingBoard;

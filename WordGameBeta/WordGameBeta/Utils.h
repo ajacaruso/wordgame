@@ -13,5 +13,6 @@
 
 +(NSString *)randomizeLetter;
 +(BOOL)isValidWord:(NSString *) word;
-
++(NSDictionary *)getRandomLevel;
++(NSDictionary *)getLevel:(NSString *)level;
 @end
