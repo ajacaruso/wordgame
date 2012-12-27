@@ -18,5 +18,6 @@
 @property (nonatomic, retain) UIWindow *window;
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer;
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer;
 
 @end

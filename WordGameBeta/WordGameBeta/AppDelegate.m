@@ -110,12 +110,42 @@
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
-	// Run the intro Scene
-    // Run the intro Scene
+    //Swipe Recogniser
+    //UISwipeGestureRecognizer *recognizer = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)] autorelease];
+    //[recognizer setDirection:(UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionDown | UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionUp)];
+    //[viewController.view addGestureRecognizer:recognizer];
+    
+    UISwipeGestureRecognizer *recognizer1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer1 setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [viewController.view addGestureRecognizer:recognizer1];
+    [recognizer1 release];
+    
+    UISwipeGestureRecognizer *recognizer2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer2 setDirection:(UISwipeGestureRecognizerDirectionUp)];
+    [viewController.view addGestureRecognizer:recognizer2];
+    [recognizer2 release];
+    
+    UISwipeGestureRecognizer *recognizer3 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer3 setDirection:(UISwipeGestureRecognizerDirectionDown)];
+    [viewController.view addGestureRecognizer:recognizer3];
+    [recognizer3 release];
+    
+    UISwipeGestureRecognizer *recognizer4 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer4 setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [viewController.view addGestureRecognizer:recognizer4];
+    [recognizer4 release];
+    
+    //Drag and Drop Recogniser
     UIPanGestureRecognizer *gestureRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFrom:)] autorelease];
+    [gestureRecognizer requireGestureRecognizerToFail:recognizer1];
+    [gestureRecognizer requireGestureRecognizerToFail:recognizer2];
+    [gestureRecognizer requireGestureRecognizerToFail:recognizer3];
+    [gestureRecognizer requireGestureRecognizerToFail:recognizer4];
     [viewController.view addGestureRecognizer:gestureRecognizer];
+    
     [MenuManager createMainMenu];
 }
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -155,13 +185,21 @@
 }
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
-    
+    //NSLog(@"testing 1");
     CCScene *curScene = [[CCDirector sharedDirector] runningScene];
     if ([curScene isKindOfClass:[GameTypeMain class]]) {
         GameTypeMain *gameScene = (GameTypeMain *) curScene;
        [gameScene handlePanFrom:recognizer];
     }
     
+}
+
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+    CCScene *curScene = [[CCDirector sharedDirector] runningScene];
+    if ([curScene isKindOfClass:[GameTypeMain class]]) {
+        GameTypeMain *gameScene = (GameTypeMain *) curScene;
+        [gameScene handleSwipeFrom:recognizer];
+    }
 }
 
 - (void)dealloc {

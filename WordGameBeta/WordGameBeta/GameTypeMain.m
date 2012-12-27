@@ -54,6 +54,7 @@
     [playArea submitWord:specialAbility];
 }
 
+
 #pragma mark - Move Events / Functions
 
 - (void)moveBoard:(ccTime)dt{
@@ -67,6 +68,22 @@
         [self checkMoveCompleted];
     }];
     [theBoard runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+}
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer{
+   if(UISwipeGestureRecognizerDirectionRight == recognizer.direction){
+        NSLog(@"Right!");
+        [playArea submitWord:specialRight];
+    }else if(UISwipeGestureRecognizerDirectionLeft == recognizer.direction){
+        NSLog(@"Left!");
+        [playArea submitWord:specialLeft];
+    }else if(UISwipeGestureRecognizerDirectionDown == recognizer.direction){
+        NSLog(@"Down!");
+        [playArea submitWord:specialDown];
+    }else if(UISwipeGestureRecognizerDirectionUp == recognizer.direction){
+        NSLog(@"Up!");
+        [playArea submitWord:specialUp];
+    }
+        
 }
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
@@ -147,10 +164,10 @@
         //Check if Letters boundingBox is in relative touch location
         if(CGRectContainsPoint(boundingBox, touchLocationRelativeToShape)){
             newSprite = sprite;
-            NSLog(@"1 - In Box");
+            //NSLog(@"1 - In Box");
             break;
         }else{
-            NSLog(@"2 - Not In Box");
+            //NSLog(@"2 - Not In Box");
         }
     }
     

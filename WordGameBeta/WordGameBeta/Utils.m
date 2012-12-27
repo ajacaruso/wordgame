@@ -37,7 +37,8 @@
 }
 
 +(BOOL) isValidWord:(NSString *)word {
-    return [UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:word];;
+    //return [UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:word];
+    return true;
 }
 
 +(NSDictionary *)getRandomLevel{

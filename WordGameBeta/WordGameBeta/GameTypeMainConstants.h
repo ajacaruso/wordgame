@@ -6,7 +6,7 @@ typedef enum {
     boardWidth = 320,
     tilesInRow = 8,
     tileSize = 40,
-    boardScrollRate = 4,
+    boardScrollRate = 30,
     controlsHeight = 80
 } boardNumbers;
 

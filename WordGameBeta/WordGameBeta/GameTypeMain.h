@@ -35,6 +35,7 @@
 - (void)submitWord:(NSString *)specialAbility;
 - (void)moveBoard:(ccTime)dt;
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer;
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer;
 - (void)selectSpriteForTouch:(CGPoint)touchLocation;
 - (void)panForTranslation:(CGPoint)translation;
 
