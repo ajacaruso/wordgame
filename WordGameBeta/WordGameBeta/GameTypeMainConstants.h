@@ -6,7 +6,8 @@ typedef enum {
     boardWidth = 320,
     tilesInRow = 8,
     tileSize = 40,
-    boardScrollRate = 1
+    boardScrollRate = 10,
+    controlsHeight = 80
 } boardNumbers;
 
 #define specialUp @"up"

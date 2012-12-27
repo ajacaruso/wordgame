@@ -31,6 +31,8 @@
 - (GameTypeMainTile *)tileAtCol:(int)Col andRow:(int)Row;
 - (void)setTileArrayState:(NSMutableArray *)tileArray To:(int)state;
 
+- (void)cleanupBoard;
+- (BOOL)hasEmptySpace;
 - (BOOL)checkForWord;
 - (BOOL)positionIsRowAndValidWord:(NSMutableArray *)positionArray;
 - (BOOL)positionIsColAndValidWord:(NSMutableArray *)positionArray;

@@ -180,6 +180,12 @@
 #pragma mark - Game Logic
 
 - (void)checkMoveCompleted{
+    if(![playArea.gameBoard hasEmptySpace]){
+        NSLog(@"GameOver");
+    }else{
+        [playArea.gameBoard cleanupBoard];
+    }
+    
     if(currentResetPoint > tilesInRow){
         currentResetPoint++;
     }else{

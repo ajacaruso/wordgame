@@ -325,6 +325,63 @@
 }
 
 
+- (BOOL)hasEmptySpace{
+    
+    //boardArray
+    for(NSMutableArray *array in boardArray){
+        
+        for (GameTypeMainTile *sprite in array) {
+                
+            //Conversion Steps for Absolute Point
+            CGRect boardArea = [self boundingBox];
+            CGRect spriteRect = CGRectMake(sprite.position.x, sprite.position.y+(boardOffset+controlsHeight), sprite.contentSize.width, sprite.contentSize.height);
+            
+            //Check In Play Area
+            if (CGRectContainsRect(boardArea, spriteRect)) {
+                if([sprite getUseable]){
+                    return true;
+                }
+            }
+        }
+    }
+    
+    return false;
+}
+
+- (void)cleanupBoard{
+    NSMutableArray *removalArray = [[NSMutableArray alloc] init];
+    int count2 = 0;
+    bool finishedLoop = false;
+    //boardArray
+    for(NSMutableArray *array in boardArray){
+        
+        if(!finishedLoop){
+        for (GameTypeMainTile *sprite in array) {
+            
+            //Conversion Steps for Absolute Point
+            CGRect boardArea = [self boundingBox];
+            CGRect spriteRect = CGRectMake(sprite.position.x, sprite.position.y+(boardOffset+controlsHeight), sprite.contentSize.width, sprite.contentSize.height);
+            
+            //Check In Play Area
+            if (CGRectContainsRect(boardArea, spriteRect)) {
+                 //NSLog(@"Position Y2 : %f", sprite.position.y);
+                finishedLoop = true;
+                break;
+            }else{
+                count2++;
+                [removalArray addObject:array];
+                [boardLayer removeChild:sprite cleanup:YES];
+               // NSLog(@"Position Y1 : %f", sprite.position.y);
+            }
+            
+        }
+        }
+    }
+    [boardArray removeObjectsInArray:removalArray];
+    //NSLog(@"Number %d: -------------------------", count2);
+}
+
+
 #pragma mark - Submit Functions - Word Detect
 
 - (BOOL)checkForWord{

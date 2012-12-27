@@ -13,7 +13,7 @@
 
 - (GameTypeMainControlls*)initWithControlls:(NSString *)Controlls withManager:manager{
     
-    self = [super initWithFile:@"controlls_background.png" rect:CGRectMake(0, 0, 320, 80)];
+    self = [super initWithFile:@"controlls_background.png" rect:CGRectMake(0, 0, 320, controlsHeight)];
     
     //Controll Menu
     CCMenuItemImage *menuButton = [CCMenuItemImage itemFromNormalImage:@"BackArrow_Button.png"
