@@ -17,6 +17,12 @@
     self = [super initWithFile:@"overlay_background.png" rect:CGRectMake(0, 0, 320, 480)];
     self.position = ccp(winSize.width/2, winSize.height/2);
     
+    // Header Text
+    CCLabelTTF *label = [CCLabelTTF labelWithString:@"GAME OVER" fontName:@"Marker Felt" fontSize:32];
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    label.position =  ccp( size.width /2 , size.height/2+70 );
+    [self addChild: label];
+    
     // Menu
     
     CCMenuItemImage * quit = [CCMenuItemImage itemFromNormalImage:@"quit_button"
