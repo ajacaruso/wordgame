@@ -1,6 +1,6 @@
 #import "GameTypeMain.h"
 #import "GameTypeMainOverlay.h"
-
+#import "GameTypeMainCompleted.h"
 
 @implementation GameTypeMain
 @synthesize backMenu, playArea, gameControlls, selLetter, lastDragPoint, currentResetPoint;
@@ -181,7 +181,10 @@
 
 - (void)checkMoveCompleted{
     if(![playArea.gameBoard hasEmptySpace]){
-        NSLog(@"GameOver");
+        [self unschedule:@selector(moveBoard:)];
+        GameTypeMainCompleted *CompletedMenu = [[[GameTypeMainCompleted alloc] initMenuOverlay:self] autorelease];
+        [self addChild:CompletedMenu z:2];
+        [gameControlls enableControls:(FALSE)];
     }else{
         [playArea.gameBoard cleanupBoard];
     }
