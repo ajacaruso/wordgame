@@ -12,6 +12,7 @@
 		AA4018F01651BA7C007B8C6F /* arrow_left_button.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4018EC1651BA7C007B8C6F /* arrow_left_button.png */; };
 		AA4018F11651BA7C007B8C6F /* arrow_right_button.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4018ED1651BA7C007B8C6F /* arrow_right_button.png */; };
 		AA4018F21651BA7C007B8C6F /* arrow_up_button.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4018EE1651BA7C007B8C6F /* arrow_up_button.png */; };
+		AAC73FA21699EE1100404C8A /* gametypemain_levels.json in Resources */ = {isa = PBXBuildFile; fileRef = AAC73FA11699EE1100404C8A /* gametypemain_levels.json */; };
 		AAE5ACBB166922E6004414C8 /* gametypemain_1.json in Resources */ = {isa = PBXBuildFile; fileRef = AAE5ACBA166922E6004414C8 /* gametypemain_1.json */; };
 		AAE5ACE6167E5424004414C8 /* gametypemain_2.json in Resources */ = {isa = PBXBuildFile; fileRef = AAE5ACE4167E5424004414C8 /* gametypemain_2.json */; };
 		AAE5ACE7167E5424004414C8 /* gametypemain_3.json in Resources */ = {isa = PBXBuildFile; fileRef = AAE5ACE5167E5424004414C8 /* gametypemain_3.json */; };
@@ -199,6 +200,7 @@
 		AA4018EC1651BA7C007B8C6F /* arrow_left_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_left_button.png; path = Assets/Images/Game/GameTypeMain/Special/arrow_left_button.png; sourceTree = "<group>"; };
 		AA4018ED1651BA7C007B8C6F /* arrow_right_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_right_button.png; path = Assets/Images/Game/GameTypeMain/Special/arrow_right_button.png; sourceTree = "<group>"; };
 		AA4018EE1651BA7C007B8C6F /* arrow_up_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_up_button.png; path = Assets/Images/Game/GameTypeMain/Special/arrow_up_button.png; sourceTree = "<group>"; };
+		AAC73FA11699EE1100404C8A /* gametypemain_levels.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = gametypemain_levels.json; path = Assets/LocalData/GameData/gametypemain_levels.json; sourceTree = "<group>"; };
 		AAE5ACBA166922E6004414C8 /* gametypemain_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = gametypemain_1.json; path = Assets/LocalData/GameData/gametypemain_1.json; sourceTree = "<group>"; };
 		AAE5ACE4167E5424004414C8 /* gametypemain_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = gametypemain_2.json; path = Assets/LocalData/GameData/gametypemain_2.json; sourceTree = "<group>"; };
 		AAE5ACE5167E5424004414C8 /* gametypemain_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = gametypemain_3.json; path = Assets/LocalData/GameData/gametypemain_3.json; sourceTree = "<group>"; };
@@ -1068,6 +1070,7 @@
 		EA65C82C1587F25000926EB9 /* GameData */ = {
 			isa = PBXGroup;
 			children = (
+				AAC73FA11699EE1100404C8A /* gametypemain_levels.json */,
 				AAE5ACE4167E5424004414C8 /* gametypemain_2.json */,
 				AAE5ACE5167E5424004414C8 /* gametypemain_3.json */,
 				AAE5ACBA166922E6004414C8 /* gametypemain_1.json */,
@@ -1331,6 +1334,7 @@
 				AAE5ACBB166922E6004414C8 /* gametypemain_1.json in Resources */,
 				AAE5ACE6167E5424004414C8 /* gametypemain_2.json in Resources */,
 				AAE5ACE7167E5424004414C8 /* gametypemain_3.json in Resources */,
+				AAC73FA21699EE1100404C8A /* gametypemain_levels.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1507,7 +1511,7 @@
 				GCC_PREFIX_HEADER = WordGameBeta/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = WordGameBeta/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1523,7 +1527,7 @@
 				GCC_PREFIX_HEADER = WordGameBeta/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = WordGameBeta/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;

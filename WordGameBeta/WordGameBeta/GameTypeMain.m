@@ -3,7 +3,7 @@
 #import "GameTypeMainCompleted.h"
 
 @implementation GameTypeMain
-@synthesize backMenu, playArea, gameControlls, selLetter, lastDragPoint, currentResetPoint;
+@synthesize backMenu, playArea, gameControlls, selLetter, lastDragPoint, currentResetPoint, isDragging;
 
 -(id) init
 {
@@ -24,6 +24,7 @@
         [self addChild:gameControlls z:1];
         
         currentResetPoint = 0;
+        isDragging = false;
         
         //Set Timers
         [self schedule:@selector(moveBoard:) interval:boardScrollRate];
@@ -70,20 +71,22 @@
     [theBoard runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
 }
 - (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer{
-   if(UISwipeGestureRecognizerDirectionRight == recognizer.direction){
-        NSLog(@"Right!");
-        [playArea submitWord:specialRight];
-    }else if(UISwipeGestureRecognizerDirectionLeft == recognizer.direction){
-        NSLog(@"Left!");
-        [playArea submitWord:specialLeft];
-    }else if(UISwipeGestureRecognizerDirectionDown == recognizer.direction){
-        NSLog(@"Down!");
-        [playArea submitWord:specialDown];
-    }else if(UISwipeGestureRecognizerDirectionUp == recognizer.direction){
-        NSLog(@"Up!");
-        [playArea submitWord:specialUp];
-    }
-        
+    
+    if(!isDragging){
+        if(UISwipeGestureRecognizerDirectionRight == recognizer.direction){
+            NSLog(@"Right!");
+            [playArea submitWord:specialRight];
+        }else if(UISwipeGestureRecognizerDirectionLeft == recognizer.direction){
+            NSLog(@"Left!");
+            [playArea submitWord:specialLeft];
+        }else if(UISwipeGestureRecognizerDirectionDown == recognizer.direction){
+            NSLog(@"Down!");
+            [playArea submitWord:specialDown];
+        }else if(UISwipeGestureRecognizerDirectionUp == recognizer.direction){
+            NSLog(@"Up!");
+            [playArea submitWord:specialUp];
+        }
+    }     
 }
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
@@ -115,6 +118,7 @@
         
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
         if(selLetter){
+            isDragging = false;
             selLetter.opacity = 255;
             
             //Check If on Board or Word Bank
@@ -164,6 +168,7 @@
         //Check if Letters boundingBox is in relative touch location
         if(CGRectContainsPoint(boundingBox, touchLocationRelativeToShape)){
             newSprite = sprite;
+            isDragging = true;
             //NSLog(@"1 - In Box");
             break;
         }else{

@@ -21,6 +21,7 @@
     GameTypeMainLetter *selLetter;
     CGPoint lastDragPoint;
     int currentResetPoint;
+    bool isDragging;
 }
 
 @property (nonatomic, retain) CCMenu *backMenu;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) GameTypeMainLetter *selLetter;
 @property (assign) CGPoint lastDragPoint;
 @property (nonatomic, assign) int currentResetPoint;
+@property (nonatomic, assign) bool isDragging;
 
 - (void)openMenu;
 - (void)closeMenu;

@@ -42,12 +42,28 @@
 }
 
 +(NSDictionary *)getRandomLevel{
-    NSDictionary *randomLevel = [[NSDictionary alloc] init];
     
+    NSDictionary *levelDictionary = [[NSDictionary alloc] init];
+    NSDictionary *randomLevel = [[NSDictionary alloc] init];
+    NSMutableArray *levels = [[NSMutableArray alloc] init];
     NSError *error;
     
+    levelDictionary = [NSJSONSerialization
+                   JSONObjectWithData:[NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"gametypemain_levels" ofType:@"json"]]
+                   options:kNilOptions
+                   error:&error];
+    
+    
+    
+    levels = [levelDictionary objectForKey:@"levels"];
+    int randomNumber = arc4random()%[levels count];
+    NSDictionary *level = [levels objectAtIndex:randomNumber];
+    NSString *levelString = [level objectForKey:@"level"];
+    
+    NSLog(@"Level Loading : %@", levelString);
+    
     randomLevel = [NSJSONSerialization
-                     JSONObjectWithData:[NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"gametypemain_2" ofType:@"json"]]
+                     JSONObjectWithData:[NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:levelString ofType:@"json"]]
                      options:kNilOptions
                      error:&error];
     

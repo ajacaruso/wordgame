@@ -1,0 +1,9 @@
+ {
+
+   "levels":
+    [
+     {"level": "gametypemain_1"},
+     {"level": "gametypemain_2"},
+     {"level": "gametypemain_3"}
+    ]
+}

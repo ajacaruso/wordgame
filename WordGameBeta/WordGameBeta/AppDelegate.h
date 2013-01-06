@@ -21,3 +21,10 @@
 - (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer;
 
 @end
+
+
+@interface MainGestureDelegate : NSObject <UIGestureRecognizerDelegate> {
+    
+}
+
+@end

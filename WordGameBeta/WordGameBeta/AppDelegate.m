@@ -14,6 +14,21 @@
 #import "MenuManager.h"
 #import "GameManager.h"
 
+@implementation MainGestureDelegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    return YES;
+}
+
+@end
+
 @implementation AppDelegate
 
 @synthesize window;
@@ -136,17 +151,19 @@
     [recognizer4 release];
     
     //Drag and Drop Recogniser
-    UIPanGestureRecognizer *gestureRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFrom:)] autorelease];
-    [gestureRecognizer requireGestureRecognizerToFail:recognizer1];
-    [gestureRecognizer requireGestureRecognizerToFail:recognizer2];
-    [gestureRecognizer requireGestureRecognizerToFail:recognizer3];
-    [gestureRecognizer requireGestureRecognizerToFail:recognizer4];
-    [viewController.view addGestureRecognizer:gestureRecognizer];
+    UIPanGestureRecognizer *panRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFrom:)] autorelease];
     
+    MainGestureDelegate *deleg = [[MainGestureDelegate alloc] init];
+    
+    [panRecognizer setDelegate:deleg];
+    [viewController.view addGestureRecognizer:panRecognizer];
     [MenuManager createMainMenu];
 }
-
-
+/*
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+*/
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] pause];
