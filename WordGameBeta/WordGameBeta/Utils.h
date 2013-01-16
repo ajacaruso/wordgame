@@ -15,4 +15,6 @@
 +(BOOL)isValidWord:(NSString *) word;
 +(NSDictionary *)getRandomLevel;
 +(NSDictionary *)getLevel:(NSString *)level;
++(NSMutableDictionary *)createLetterDictionary;
+
 @end

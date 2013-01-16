@@ -7,6 +7,7 @@
 //
 
 #import "GameTypeMainCompleted.h"
+#import "SimpleAudioEngine.h"
 
 @implementation GameTypeMainCompleted
 @synthesize completedMenu, gameManager;
@@ -37,6 +38,7 @@
     [self addChild:completedMenu];
     
     gameManager = manager;
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     
     return self;
 }

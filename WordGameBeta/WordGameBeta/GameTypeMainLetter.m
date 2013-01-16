@@ -9,7 +9,7 @@
 #import "GameTypeMainLetter.h"
 
 @implementation GameTypeMainLetter
-@synthesize letter, origPosition, active;
+@synthesize letter, origPosition, lastPosition, active;
 
 - (GameTypeMainLetter*)initLetter{
     
@@ -44,11 +44,18 @@
 
 -(void)setOriginalPosition:(CGPoint)originalPosition{
     origPosition = originalPosition;
+    lastPosition = originalPosition;
+}
+-(void)setLastPosition:(CGPoint)lPosition{
+    lastPosition = lPosition;
 }
 
 -(void)goToOriginalPosition{
     self.position = origPosition;
 }
 
+-(void)goToLastPosition{
+    self.position = lastPosition;
+}
 
 @end

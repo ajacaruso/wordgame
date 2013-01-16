@@ -125,11 +125,8 @@
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
-    //Swipe Recogniser
-    //UISwipeGestureRecognizer *recognizer = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)] autorelease];
-    //[recognizer setDirection:(UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionDown | UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionUp)];
-    //[viewController.view addGestureRecognizer:recognizer];
-    
+    //Swipe Recogniser 
+    /* Removing Swipe For Now
     UISwipeGestureRecognizer *recognizer1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
     [recognizer1 setDirection:(UISwipeGestureRecognizerDirectionRight)];
     [viewController.view addGestureRecognizer:recognizer1];
@@ -149,6 +146,7 @@
     [recognizer4 setDirection:(UISwipeGestureRecognizerDirectionLeft)];
     [viewController.view addGestureRecognizer:recognizer4];
     [recognizer4 release];
+    */
     
     //Drag and Drop Recogniser
     UIPanGestureRecognizer *panRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFrom:)] autorelease];
@@ -159,11 +157,6 @@
     [viewController.view addGestureRecognizer:panRecognizer];
     [MenuManager createMainMenu];
 }
-/*
-- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
-*/
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] pause];

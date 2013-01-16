@@ -7,6 +7,7 @@
 //
 
 #import "GameTypeMainPlayArea.h"
+#import "SimpleAudioEngine.h"
 
 @implementation GameTypeMainPlayArea
 @synthesize gameBoard, wordBank;
@@ -37,6 +38,7 @@
         [gameBoard changeTilesForActiveLetters:specialAbility];
         [gameBoard removeAllLetters];
         [wordBank updateWordBank];
+        [[SimpleAudioEngine sharedEngine] playEffect:@"game_type_main_submit_explosion.mp3"];
     }else{
         //ToDo: Create Some Kind of Visual Failure MSG for the user
         NSLog(@"No Valid Word On Board");

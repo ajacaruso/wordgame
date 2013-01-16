@@ -204,6 +204,7 @@
     
     if([closestTile getUseable]){
         Letter.position = closestTile.position;
+        [Letter setLastPosition:Letter.position];
         [closestTile setUseable:false];
         
         BOOL entryExists = false;

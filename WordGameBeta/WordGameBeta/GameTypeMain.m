@@ -1,9 +1,11 @@
 #import "GameTypeMain.h"
 #import "GameTypeMainOverlay.h"
 #import "GameTypeMainCompleted.h"
+#import "SimpleAudioEngine.h"
+
 
 @implementation GameTypeMain
-@synthesize backMenu, playArea, gameControlls, selLetter, lastDragPoint, currentResetPoint, isDragging;
+@synthesize backMenu, playArea, gameControlls, selLetter, lastDragPoint, currentResetPoint, isDragging, lastDirection, panTimer;
 
 -(id) init
 {
@@ -28,6 +30,13 @@
         
         //Set Timers
         [self schedule:@selector(moveBoard:) interval:boardScrollRate];
+        [self schedule:@selector(checkForPanOrSubmit:) interval:0.01f];
+        
+        lastDirection = @"";
+        panTimer = 0.0f;
+        [[SimpleAudioEngine sharedEngine] setMute:false];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"game_type_main_background.mp3"];
+        
     }
 	return self;
 }
@@ -44,11 +53,13 @@
     GameTypeMainOverlay *OverlayMenu = [[[GameTypeMainOverlay alloc] initMenuOverlay:self] autorelease];
     [self addChild:OverlayMenu z:2];
     [gameControlls enableControls:(FALSE)];
+    [[SimpleAudioEngine sharedEngine] setMute:true];
 }
 
 -(void)closeMenu
 {
     [gameControlls enableControls:(TRUE)];
+    [[SimpleAudioEngine sharedEngine] setMute:false];
 }
 
 -(void)submitWord:(NSString *)specialAbility{
@@ -56,7 +67,7 @@
 }
 
 
-#pragma mark - Move Events / Functions
+#pragma mark - Timer Functions
 
 - (void)moveBoard:(ccTime)dt{
     CCSprite *theBoard = playArea.gameBoard.boardLayer;
@@ -68,8 +79,17 @@
         [playArea.gameBoard addBoardMoveOffset:tileSize];
         [self checkMoveCompleted];
     }];
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"game_type_main_scrollup.mp3"];
     [theBoard runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
 }
+
+- (void)checkForPanOrSubmit:(ccTime)dt{
+    panTimer += 0.01f;
+}
+
+#pragma mark - Move Events / Functions
+
 - (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer{
     
     if(!isDragging){
@@ -86,12 +106,23 @@
             NSLog(@"Up!");
             [playArea submitWord:specialUp];
         }
-    }     
+    }
+    
+    if(UISwipeGestureRecognizerDirectionRight == recognizer.direction){
+        lastDirection = specialRight;
+    }else if(UISwipeGestureRecognizerDirectionLeft == recognizer.direction){
+        lastDirection = specialLeft;
+    }else if(UISwipeGestureRecognizerDirectionDown == recognizer.direction){
+        lastDirection = specialDown;
+    }else if(UISwipeGestureRecognizerDirectionUp == recognizer.direction){
+        lastDirection = specialUp;
+    }
 }
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
+        
         CGPoint touchLocation = [recognizer locationInView:recognizer.view];
         touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
         touchLocation = [self convertToNodeSpace:touchLocation];
@@ -111,17 +142,34 @@
         
         if([self spriteIsInPlayArea:selLetter]){
             //NSLog(@"In Play Area");
+            //If On Board Apply Offset
         }else{
             //NSLog(@"Not In Play Area");
             selLetter.position = lastDragPoint;
         }
         
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+
+        
         if(selLetter){
             isDragging = false;
             selLetter.opacity = 255;
             
             //Check If on Board or Word Bank
+            /*
+            if(panTimer < 0.01f){
+                [self changeContainerOfSprite:selLetter to:playArea.gameBoard.boardLayer];
+                [self returnToLastPosition:selLetter];
+                
+                if(![playArea.gameBoard addLetterToBoard:selLetter]){
+                    [self changeContainerOfSprite:selLetter to:playArea.wordBank];
+                    [self returnToLastPosition:selLetter];
+                }else{
+                    [playArea submitWord:lastDirection];
+                }
+                
+            }else 
+             */
             if([self spriteIsInWordBank:selLetter]){
                 
                 [self changeContainerOfSprite:selLetter to:playArea.wordBank];
@@ -130,11 +178,13 @@
             }else if([self spriteIsInBoard:selLetter]){
                 
                 [self changeContainerOfSprite:selLetter to:playArea.gameBoard.boardLayer];
-                
+                //[self returnToLastPosition:selLetter];
                 //If Can't Be Placed On Board Return to WordBank
                 if(![playArea.gameBoard addLetterToBoard:selLetter]){
-                    [self changeContainerOfSprite:selLetter to:playArea.wordBank];
-                    [selLetter goToOriginalPosition];
+                    //[self changeContainerOfSprite:selLetter to:playArea.wordBank];
+                    [self returnToLastPosition:selLetter];
+                }else{
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"game_type_main_tile_down.mp3"];
                 }
                 
             }
@@ -169,6 +219,8 @@
         if(CGRectContainsPoint(boundingBox, touchLocationRelativeToShape)){
             newSprite = sprite;
             isDragging = true;
+            panTimer = 0.0f;
+            [[SimpleAudioEngine sharedEngine] playEffect:@"game_type_main_tile_up.mp3"];
             //NSLog(@"1 - In Box");
             break;
         }else{
@@ -250,6 +302,7 @@
     }
 }
 
+
 -(BOOL)spriteIsInBoard:(CCSprite *)sprite{
    
     CGRect boardRect = playArea.gameBoard.boundingBox;
@@ -287,5 +340,8 @@
     [Letter goToOriginalPosition];
 }
 
+-(void)returnToLastPosition:(GameTypeMainLetter*)Letter{
+    [Letter goToLastPosition];
+}
 
 @end

@@ -1,6 +1,6 @@
 
 #import "MainMenu.h"
-
+#import "SimpleAudioEngine.h"
 
 @implementation MainMenu
 @synthesize mainMenu;
@@ -46,6 +46,7 @@
         NSLog(@"Testing - %@", [Utils randomizeLetter]);
          
         *****/
+        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
         
 	}
 	return self;

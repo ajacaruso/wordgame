@@ -22,6 +22,8 @@
     CGPoint lastDragPoint;
     int currentResetPoint;
     bool isDragging;
+    NSString *lastDirection;
+    float panTimer;
 }
 
 @property (nonatomic, retain) CCMenu *backMenu;
@@ -31,11 +33,14 @@
 @property (assign) CGPoint lastDragPoint;
 @property (nonatomic, assign) int currentResetPoint;
 @property (nonatomic, assign) bool isDragging;
+@property (nonatomic, retain)  NSString *lastDirection;
+@property (nonatomic, assign) float panTimer;
 
 - (void)openMenu;
 - (void)closeMenu;
 - (void)submitWord:(NSString *)specialAbility;
 - (void)moveBoard:(ccTime)dt;
+- (void)checkForPanOrSubmit:(ccTime)dt;
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer;
 - (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer;
 - (void)selectSpriteForTouch:(CGPoint)touchLocation;
@@ -49,5 +54,6 @@
 - (void) changeContainerOfSprite:(CCSprite *)sprite to:(CCSprite *)container;
 
 - (void)returnToWordBank:(GameTypeMainLetter*)Letter;
+- (void)returnToLastPosition:(GameTypeMainLetter*)Letter;
 
 @end
