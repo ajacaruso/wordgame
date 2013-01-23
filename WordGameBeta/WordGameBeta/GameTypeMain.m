@@ -3,7 +3,6 @@
 #import "GameTypeMainCompleted.h"
 #import "SimpleAudioEngine.h"
 
-
 @implementation GameTypeMain
 @synthesize backMenu, playArea, gameControlls, selLetter, lastDragPoint, currentResetPoint, isDragging, lastDirection, panTimer;
 
@@ -128,6 +127,11 @@
         touchLocation = [self convertToNodeSpace:touchLocation];
         [self selectSpriteForTouch:touchLocation];
         
+        if([self spriteIsInBoard:selLetter]){
+            CGPoint newPos = ccp(selLetter.position.x, selLetter.position.y + playArea.gameBoard.boardOffset);
+            selLetter.position = newPos;
+        }
+        
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
         /*
         Check if in play area
@@ -155,21 +159,6 @@
             isDragging = false;
             selLetter.opacity = 255;
             
-            //Check If on Board or Word Bank
-            /*
-            if(panTimer < 0.01f){
-                [self changeContainerOfSprite:selLetter to:playArea.gameBoard.boardLayer];
-                [self returnToLastPosition:selLetter];
-                
-                if(![playArea.gameBoard addLetterToBoard:selLetter]){
-                    [self changeContainerOfSprite:selLetter to:playArea.wordBank];
-                    [self returnToLastPosition:selLetter];
-                }else{
-                    [playArea submitWord:lastDirection];
-                }
-                
-            }else 
-             */
             if([self spriteIsInWordBank:selLetter]){
                 
                 [self changeContainerOfSprite:selLetter to:playArea.wordBank];
@@ -178,10 +167,14 @@
             }else if([self spriteIsInBoard:selLetter]){
                 
                 [self changeContainerOfSprite:selLetter to:playArea.gameBoard.boardLayer];
-                //[self returnToLastPosition:selLetter];
+             
                 //If Can't Be Placed On Board Return to WordBank
                 if(![playArea.gameBoard addLetterToBoard:selLetter]){
-                    //[self changeContainerOfSprite:selLetter to:playArea.wordBank];
+                    
+                    if (CGPointEqualToPoint([selLetter getLastPosition], [selLetter getOriginalPosition])) {
+                         [self changeContainerOfSprite:selLetter to:playArea.wordBank];
+                    }
+                    
                     [self returnToLastPosition:selLetter];
                 }else{
                     [[SimpleAudioEngine sharedEngine] playEffect:@"game_type_main_tile_down.mp3"];
@@ -341,6 +334,7 @@
 }
 
 -(void)returnToLastPosition:(GameTypeMainLetter*)Letter{
+    //[Letter setLastPosition:newPosition];
     [Letter goToLastPosition];
 }
 

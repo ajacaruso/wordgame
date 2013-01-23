@@ -19,6 +19,8 @@
 - (NSString *)getLetter;
 - (void)setOriginalPosition:(CGPoint)originalPosition;
 - (void)setLastPosition:(CGPoint)lPosition;
+- (CGPoint)getLastPosition;
+- (CGPoint)getOriginalPosition;
 - (void)goToOriginalPosition;
 - (void)goToLastPosition;
 - (void)setActive:(BOOL)activeState;

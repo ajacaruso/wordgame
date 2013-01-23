@@ -50,6 +50,13 @@
     lastPosition = lPosition;
 }
 
+- (CGPoint)getLastPosition{
+    return lastPosition;
+}
+- (CGPoint)getOriginalPosition{
+    return origPosition;
+}
+
 -(void)goToOriginalPosition{
     self.position = origPosition;
 }
