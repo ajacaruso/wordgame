@@ -486,4 +486,105 @@
     return boardOffset;
 }
 
+#pragma mark - State Changing Utils
+
+- (void) toggleBoardLettersToCorrectState:(bool)isCorrect{
+        for(NSMutableArray *array in boardLetters){
+            [[array objectAtIndex:0] toggleOverlayState:isCorrect];
+        }
+}
+
+- (void) updatePreviewTilesAndShow:(bool)showTiles withAbility:(NSString *)specialAbility{
+    NSMutableArray *tilesToChange = [[NSMutableArray alloc] init];
+    
+    //Find The Radius based on word length
+    
+    NSMutableArray *positionArray = [self generateCurrentLetterPositionArray];
+    
+    int maxDistance = ceil([positionArray count]/2.0);
+    
+    
+    for(NSMutableArray *objectArray in positionArray){
+        int col = [[objectArray objectAtIndex:1] intValue];
+        int row = [[objectArray objectAtIndex:2] intValue];
+        bool isBlocked = false;
+        
+        GameTypeMainTile *tileCurrent = [self tileAtCol:col andRow:row];
+        if(![tilesToChange containsObject:tileCurrent]){
+            [tilesToChange addObject:tileCurrent];
+        }
+        
+        if ([specialAbility isEqual:specialUp]) {
+            for(int c = 1; c <= maxDistance; c++){
+                if(col-c >= 0 && !isBlocked){
+                    GameTypeMainTile *tileUpdate = [self tileAtCol:col-c andRow:row];
+                    if(![tilesToChange containsObject:tileUpdate]){
+                        [tilesToChange addObject:tileUpdate];
+                    }
+                    if(![tileUpdate getUseableTwo]){
+                        isBlocked = true;
+                    }
+                }
+                
+            }
+        }else if ([specialAbility isEqual:specialDown]) {
+            for(int c = 1; c <= maxDistance; c++){
+                if(col+c < tilesInRow && !isBlocked){
+                    GameTypeMainTile *tileUpdate = [self tileAtCol:col+c andRow:row];
+                    if(![tilesToChange containsObject:tileUpdate]){
+                        [tilesToChange addObject:tileUpdate];
+                    }
+                    if(![tileUpdate getUseableTwo]){
+                        isBlocked = true;
+                    }
+                }
+            }
+        }else if ([specialAbility isEqual:specialLeft]) {
+            for(int r = 1; r <= maxDistance; r++){
+                if(row-r >= 0 && !isBlocked){
+                    GameTypeMainTile *tileUpdate = [self tileAtCol:col andRow:row-r];
+                    if(![tilesToChange containsObject:tileUpdate]){
+                        [tilesToChange addObject:tileUpdate];
+                    }
+                    if(![tileUpdate getUseableTwo]){
+                        isBlocked = true;
+                    }
+                }
+                
+            }
+        }else if ([specialAbility isEqual:specialRight]) {
+            for(int r = 1; r <= maxDistance; r++){
+                if(row+r < tilesInRow && !isBlocked){
+                    GameTypeMainTile *tileUpdate = [self tileAtCol:col andRow:row+r];
+                    if(![tilesToChange containsObject:tileUpdate]){
+                        [tilesToChange addObject:tileUpdate];
+                    }
+                    if(![tileUpdate getUseableTwo]){
+                        isBlocked = true;
+                    }
+                }
+            }
+        }
+     }
+    if(showTiles){
+        for(GameTypeMainTile *tile in tilesToChange){
+            [tile togglePreviewMode:showTiles];
+        }
+    }else{
+        [self removePreviewFromAllTiles];
+    }
+    
+}
+
+- (void)removePreviewFromAllTiles{
+    for( int c = 0; c < [boardArray count]; c++){
+        
+        NSMutableArray *colArray = [boardArray objectAtIndex:c];
+        
+        for (int r = 0; r < [colArray count]; r++) {
+            [[colArray objectAtIndex:r] togglePreviewMode:FALSE];
+        }
+    }
+}
+
 @end

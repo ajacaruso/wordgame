@@ -19,5 +19,6 @@
 
 - (GameTypeMainPlayArea *)initPlayArea;
 - (void)submitWord:(NSString *)specialAbility;
+- (void)updateBoardState:(NSString *)specialAbility;
 
 @end

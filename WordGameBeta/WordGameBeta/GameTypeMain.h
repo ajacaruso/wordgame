@@ -56,4 +56,6 @@
 - (void)returnToWordBank:(GameTypeMainLetter*)Letter;
 - (void)returnToLastPosition:(GameTypeMainLetter*)Letter;
 
+- (void)updateBoardState;
+
 @end

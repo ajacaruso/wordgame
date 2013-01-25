@@ -7,12 +7,14 @@
     CGPoint origPosition;
     CGPoint lastPosition;
     BOOL active;
+    CCSprite *overlaySprite;
 }
 
 @property (nonatomic, assign) NSString *letter;
 @property (assign) CGPoint origPosition;
 @property (assign) CGPoint lastPosition;
 @property (nonatomic, assign) BOOL active;
+@property (nonatomic, assign) CCSprite *overlaySprite;
 
 - (GameTypeMainLetter*)initLetter;
 - (void)setLetter:(NSString *)newLetter;
@@ -25,5 +27,7 @@
 - (void)goToLastPosition;
 - (void)setActive:(BOOL)activeState;
 - (BOOL)getActive;
+- (void)toggleOverlayState:(bool)isCorrect;
+- (void)toggleOverlayVisible:(bool)previewEnabled;
 
 @end

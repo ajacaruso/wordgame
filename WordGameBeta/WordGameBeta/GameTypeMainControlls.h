@@ -14,5 +14,6 @@
 - (GameTypeMainControlls*)initWithControlls:(NSString *)Controlls withManager:manager;
 - (void) openMenu: (CCMenuItem  *) menuItem;
 - (void) enableControls:(BOOL) enable;
+- (NSString *)getSpecialAbility;
 
 @end

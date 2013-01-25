@@ -9,7 +9,7 @@
 #import "GameTypeMainTile.h"
 
 @implementation GameTypeMainTile
-@synthesize currentState, useable, special, imageOne, specialOne, specialTwo, imageTwo, useableOne, useableTwo;
+@synthesize currentState, useable, special, imageOne, specialOne, specialTwo, imageTwo, useableOne, useableTwo, overlaySprite;
 
 - (GameTypeMainTile*)initWithFile:(NSString *)file starting:(int)starting image1:(NSString *)image1 isUseable1:(BOOL)isUseable1 special1:(NSString *)special1 image2:(NSString *)image2 isUseable2:(BOOL)isUseable2 special2:(NSString *)special2; {
     if ((self = [super initWithFile:file rect:CGRectMake(0, 0, 40, 40)])) {
@@ -26,6 +26,11 @@
         useableTwo = isUseable2;
         
         currentState = starting;
+        
+        overlaySprite = [[CCSprite alloc] initWithFile:@"game_type_main_preview_overlay.png"];
+        overlaySprite.anchorPoint = ccp(0,0);
+        [self addChild:overlaySprite];
+        [self togglePreviewMode:FALSE];
         
         if(currentState == 1){
             [self setAsOne];
@@ -91,6 +96,10 @@
     [self setTileTexture:imageTwo];
     [self setUseable:useableTwo];
     [self setSpecial:specialTwo];
+}
+
+- (void)togglePreviewMode:(bool)previewEnabled{
+     [overlaySprite setVisible:previewEnabled];
 }
 
 @end

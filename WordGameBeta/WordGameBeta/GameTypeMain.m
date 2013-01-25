@@ -159,6 +159,8 @@
             isDragging = false;
             selLetter.opacity = 255;
             
+            
+            
             if([self spriteIsInWordBank:selLetter]){
                 
                 [self changeContainerOfSprite:selLetter to:playArea.wordBank];
@@ -181,7 +183,8 @@
                 }
                 
             }
-            
+        
+            [self updateBoardState];
             NSLog(@"Board Letter Count : %d", [playArea.gameBoard.boardLetters count]);
         }//end if sel letter
     }
@@ -214,10 +217,11 @@
             isDragging = true;
             panTimer = 0.0f;
             [[SimpleAudioEngine sharedEngine] playEffect:@"game_type_main_tile_up.mp3"];
-            //NSLog(@"1 - In Box");
+            
+            //Turn All Letters Overlay to Off for a clean slate
+            [playArea.wordBank setAllLetterOverlaysOff];
+            
             break;
-        }else{
-            //NSLog(@"2 - Not In Box");
         }
     }
     
@@ -337,5 +341,11 @@
     //[Letter setLastPosition:newPosition];
     [Letter goToLastPosition];
 }
+
+#pragma mark - Update Board
+- (void)updateBoardState{
+    [playArea updateBoardState:[gameControlls getSpecialAbility]];
+}
+
 
 @end

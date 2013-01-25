@@ -54,6 +54,13 @@
     
 }
 
+
+- (void)setAllLetterOverlaysOff{
+    for(int l = 0; l < [letterBankArray count]; l++){
+        [[letterBankArray objectAtIndex:l] toggleOverlayVisible:false];
+    }
+}
+
 - (NSMutableArray *)getLetterBankArray{
     return letterBankArray;
 }

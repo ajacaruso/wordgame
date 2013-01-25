@@ -9,7 +9,7 @@
 #import "GameTypeMainLetter.h"
 
 @implementation GameTypeMainLetter
-@synthesize letter, origPosition, lastPosition, active;
+@synthesize letter, origPosition, lastPosition, active, overlaySprite;
 
 - (GameTypeMainLetter*)initLetter{
     
@@ -22,6 +22,11 @@
 
     self.anchorPoint=ccp(0,0);
     active = TRUE;
+    
+    overlaySprite = [[CCSprite alloc] initWithFile:@"game_type_main_invalid_overlay.png"];
+    overlaySprite.anchorPoint = ccp(0,0);
+    [self addChild:overlaySprite];
+    [self toggleOverlayVisible:FALSE];
     
     return self;
 }
@@ -63,6 +68,21 @@
 
 -(void)goToLastPosition{
     self.position = lastPosition;
+}
+
+- (void)toggleOverlayState:(bool)isCorrect{
+    
+    [self toggleOverlayVisible:TRUE];
+    CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:@"game_type_main_valid_overlay.png"];
+    if(!isCorrect){
+        tex = [[CCTextureCache sharedTextureCache] addImage:@"game_type_main_invalid_overlay.png"];
+    }
+    [overlaySprite setTexture:tex];
+    
+}
+
+- (void)toggleOverlayVisible:(bool)previewEnabled{
+    [overlaySprite setVisible:previewEnabled];
 }
 
 @end

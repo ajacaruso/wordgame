@@ -35,6 +35,7 @@
     
     if([gameBoard checkForWord]){
         NSLog(@"Valid Word On Board!");
+        [gameBoard removePreviewFromAllTiles];
         [gameBoard changeTilesForActiveLetters:specialAbility];
         [gameBoard removeAllLetters];
         [wordBank updateWordBank];
@@ -45,6 +46,20 @@
     }
     
     
+}
+-(void)updateBoardState:(NSString *)specialAbility{
+    [gameBoard removePreviewFromAllTiles];
+    
+    if([gameBoard checkForWord]){
+        //set all tiles to valid
+        [gameBoard toggleBoardLettersToCorrectState:TRUE];
+        [gameBoard updatePreviewTilesAndShow:TRUE withAbility:specialAbility];
+        
+    }else{
+        //set all tile to invalid
+        [gameBoard toggleBoardLettersToCorrectState:FALSE];
+        [gameBoard updatePreviewTilesAndShow:FALSE withAbility:specialAbility];
+    }
 }
 
 @end

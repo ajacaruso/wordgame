@@ -12,6 +12,7 @@
     BOOL useableOne;
     BOOL useableTwo;
     int currentState;
+    CCSprite *overlaySprite;
 }
 
 @property (nonatomic, assign) BOOL useable;
@@ -24,6 +25,7 @@
 @property (nonatomic, assign) NSString *specialOne;
 @property (nonatomic, assign) NSString *specialTwo;
 @property (nonatomic, assign) int currentState;
+@property (nonatomic, assign) CCSprite *overlaySprite;
 
 - (GameTypeMainTile*)initWithFile:(NSString *)file starting:(int)starting image1:(NSString *)image1 isUseable1:(BOOL)isUseable1 special1:(NSString *)special1 image2:(NSString *)image2 isUseable2:(BOOL)isUseable2 special2:(NSString *)special2;
 - (void)setUseable:(BOOL)newUseable;
@@ -37,5 +39,7 @@
 - (void)setStateTo:(int)state;
 - (void)setAsOne;
 - (void)setAsTwo;
+
+- (void)togglePreviewMode:(bool)previewEnabled;
 
 @end

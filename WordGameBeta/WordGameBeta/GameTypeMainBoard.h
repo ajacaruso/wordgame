@@ -42,4 +42,9 @@
 - (void) setBoardMoveOffset:(int)newOffset;
 - (void) addBoardMoveOffset:(int)addNumber;
 - (int) getBoardMoveOffset;
+
+- (void) toggleBoardLettersToCorrectState:(bool)isCorrect;
+- (void) updatePreviewTilesAndShow:(bool)showTiles withAbility:(NSString *)specialAbility;
+- (void)removePreviewFromAllTiles;
+
 @end

@@ -85,6 +85,12 @@
     [specialItemButton setNormalImage:updatedSpriteNormal];
     [specialItemButton setSelectedImage:updatedSpriteSelected];
     
+    [gameManager updateBoardState];
+
+}
+
+- (NSString *)getSpecialAbility{
+    return specialAbility;
 }
 
 - (void) enableControls:(BOOL)enable {

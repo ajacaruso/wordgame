@@ -12,4 +12,6 @@
 - (void)createInitialWordBank;
 - (NSMutableArray *)getLetterBankArray;
 - (void)updateWordBank;
+- (void)setAllLetterOverlaysOff;
+
 @end
