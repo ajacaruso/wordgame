@@ -167,7 +167,7 @@ public class Scene
                         
                         int width = map.getWidth();
                         int height = map.getHeight();
-			line="\t\"rowSize\": "+width+",";
+                        line="\t\"rowSize\": "+width+",";
                         writer.println(line);
 			
                         line="\t\"tiles\":\n\t[\n";
@@ -182,11 +182,21 @@ public class Scene
                                 Tile bot = map.getTile(j, i, 0);
                                 if(top != null && bot != null)
                                 {
-                                    writer.print("\t\t{\"starting\": 1, "+top.toJson(1)+", "+bot.toJson(2)+"},\n");
+                                    writer.print("\t\t{\"starting\": 1, "+top.toJson(1)+", "+bot.toJson(2)+"}");
                                 }
                                 else 
                                 {
-                                    writer.print("\t\t{},\n");
+                                    writer.print("\t\t{}");
+                                }
+                                
+                                //omit the last comma before the closing square bracket.
+                                if((i==(height-1)) && (j==(width-1)))
+                                {
+                                    writer.println();
+                                }
+                                else
+                                {
+                                    writer.println(",");
                                 }
                             }
                             writer.println();
