@@ -13,6 +13,9 @@
 
 +(NSString *)randomizeLetter;
 +(BOOL)isValidWord:(NSString *) word;
++(bool)isRealWord:(NSString *)currentWord;
++(bool)isAllowedWordType:(NSString *)currentWord;
+
 +(NSDictionary *)getRandomLevel;
 +(NSDictionary *)getLevel:(NSString *)level;
 +(NSMutableDictionary *)createLetterDictionary;

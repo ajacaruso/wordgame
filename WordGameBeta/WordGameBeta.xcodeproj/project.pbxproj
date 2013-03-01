@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		97D7CDD81602CFAA00DC10EB /* GameTypeMainPlayArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D7CDD71602CFAA00DC10EB /* GameTypeMainPlayArea.m */; };
+		AA20C1B516E0400E006D1DDA /* GameTypeMainHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AA20C1B416E0400E006D1DDA /* GameTypeMainHeader.m */; };
+		AA20C1B816E04020006D1DDA /* progress_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = AA20C1B716E04020006D1DDA /* progress_bar.png */; };
 		AA4018EF1651BA7C007B8C6F /* arrow_down_button.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4018EB1651BA7C007B8C6F /* arrow_down_button.png */; };
 		AA4018F01651BA7C007B8C6F /* arrow_left_button.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4018EC1651BA7C007B8C6F /* arrow_left_button.png */; };
 		AA4018F11651BA7C007B8C6F /* arrow_right_button.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4018ED1651BA7C007B8C6F /* arrow_right_button.png */; };
@@ -204,6 +206,9 @@
 /* Begin PBXFileReference section */
 		97D7CDD61602CFAA00DC10EB /* GameTypeMainPlayArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTypeMainPlayArea.h; sourceTree = "<group>"; };
 		97D7CDD71602CFAA00DC10EB /* GameTypeMainPlayArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTypeMainPlayArea.m; sourceTree = "<group>"; };
+		AA20C1B316E0400E006D1DDA /* GameTypeMainHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTypeMainHeader.h; sourceTree = "<group>"; };
+		AA20C1B416E0400E006D1DDA /* GameTypeMainHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTypeMainHeader.m; sourceTree = "<group>"; };
+		AA20C1B716E04020006D1DDA /* progress_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = progress_bar.png; path = Assets/Images/Game/GameTypeMain/progress_bar.png; sourceTree = "<group>"; };
 		AA4018EB1651BA7C007B8C6F /* arrow_down_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_down_button.png; path = Assets/Images/Game/GameTypeMain/Special/arrow_down_button.png; sourceTree = "<group>"; };
 		AA4018EC1651BA7C007B8C6F /* arrow_left_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_left_button.png; path = Assets/Images/Game/GameTypeMain/Special/arrow_left_button.png; sourceTree = "<group>"; };
 		AA4018ED1651BA7C007B8C6F /* arrow_right_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_right_button.png; path = Assets/Images/Game/GameTypeMain/Special/arrow_right_button.png; sourceTree = "<group>"; };
@@ -962,6 +967,8 @@
 		EA5DF09D1592321400863B62 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				AA20C1B316E0400E006D1DDA /* GameTypeMainHeader.h */,
+				AA20C1B416E0400E006D1DDA /* GameTypeMainHeader.m */,
 				97D7CDD61602CFAA00DC10EB /* GameTypeMainPlayArea.h */,
 				97D7CDD71602CFAA00DC10EB /* GameTypeMainPlayArea.m */,
 				EA65C8031587E9A800926EB9 /* GameTypeMainBoard.h */,
@@ -1129,6 +1136,7 @@
 		EA65C8321587F29400926EB9 /* GameTypeMain */ = {
 			isa = PBXGroup;
 			children = (
+				AA20C1B716E04020006D1DDA /* progress_bar.png */,
 				AA4018E91651BA6B007B8C6F /* Special */,
 				EA63DDEF162610B700189C0B /* Controls */,
 				EA3B2F2B160BB7400046800B /* no_background.png */,
@@ -1375,6 +1383,7 @@
 				AADD105816B2263600C43C17 /* game_type_main_preview_overlay.png in Resources */,
 				AADD105C16B2267B00C43C17 /* game_type_main_invalid_overlay.png in Resources */,
 				AADD105D16B2267B00C43C17 /* game_type_main_valid_overlay.png in Resources */,
+				AA20C1B816E04020006D1DDA /* progress_bar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1499,6 +1508,7 @@
 				97D7CDD81602CFAA00DC10EB /* GameTypeMainPlayArea.m in Sources */,
 				EAEFF5F01603BF8200CA1E99 /* GameTypeMainWordBank.m in Sources */,
 				EA3B2F33160BC3F40046800B /* GameTypeMainLetter.m in Sources */,
+				AA20C1B516E0400E006D1DDA /* GameTypeMainHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

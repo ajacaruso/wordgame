@@ -13,7 +13,7 @@
 
 - (GameTypeMainWordBank *)initWordBank{
     
-    self = [super initWithFile:@"wordbank_background.png" rect:CGRectMake(0, 0, 320, 80)];
+    self = [super initWithFile:@"wordbank_background.png" rect:CGRectMake(0, 0, 320, 60)];
     
     letterBankArray = [[NSMutableArray alloc] init];
     

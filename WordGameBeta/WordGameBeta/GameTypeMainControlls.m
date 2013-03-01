@@ -16,35 +16,24 @@
     self = [super initWithFile:@"controlls_background.png" rect:CGRectMake(0, 0, 320, controlsHeight)];
     
     //Controll Menu
-    CCMenuItemImage *menuButton = [CCMenuItemImage itemFromNormalImage:@"BackArrow_Button.png"
-                                                      selectedImage: @"BackArrow_Button.png"
-                                                             target:self
-                                                           selector:@selector(openMenu:)];
-    
     CCMenuItemImage *submitButton = [CCMenuItemImage itemFromNormalImage:@"controls_submit_btn.png"
                                                          selectedImage: @"controls_submit_btn.png"
                                                                 target:self
                                                               selector:@selector(submitWord:)];
    
-    specialItemButton = [CCMenuItemImage itemFromNormalImage:@"arrow_up_button.png"
-                                                           selectedImage: @"arrow_up_button.png"
+    specialItemButton = [CCMenuItemImage itemFromNormalImage:@"arrow_down_button.png"
+                                                           selectedImage: @"arrow_down_button.png"
                                                                   target:self
                                                                 selector:@selector(changeSpecial:)];
     
-    controllMenu = [CCMenu menuWithItems:menuButton, submitButton, specialItemButton, nil];
+    controllMenu = [CCMenu menuWithItems: submitButton, specialItemButton, nil];
     [controllMenu alignItemsHorizontallyWithPadding: 20.0f];
-    controllMenu.position  = ccp(105, 45);
+    controllMenu.position  = ccp(60, 30);
     [self addChild:controllMenu];
 
     gameManager = manager;
-    specialAbility = specialUp;
+    specialAbility = specialDown;
     return self;
-}
-
-//ToDo: Find Simpler way to call gameMager
-- (void) openMenu: (CCMenuItem  *) menuItem 
-{
-    [gameManager openMenu];
 }
 
 - (void) submitWord: (CCMenuItem  *) menuItem
@@ -91,10 +80,6 @@
 
 - (NSString *)getSpecialAbility{
     return specialAbility;
-}
-
-- (void) enableControls:(BOOL)enable {
-    self.controllMenu.isTouchEnabled = enable;
 }
 
 

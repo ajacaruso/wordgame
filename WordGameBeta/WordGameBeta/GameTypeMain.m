@@ -4,7 +4,7 @@
 #import "SimpleAudioEngine.h"
 
 @implementation GameTypeMain
-@synthesize backMenu, playArea, gameControlls, selLetter, lastDragPoint, currentResetPoint, isDragging, lastDirection, panTimer;
+@synthesize backMenu, playArea, gameControlls, gameHeader, selLetter, lastDragPoint, currentResetPoint, isDragging, lastDirection, panTimer;
 
 -(id) init
 {
@@ -20,9 +20,16 @@
         playArea.anchorPoint = ccp(0,0);
         playArea.position = ccp(0, gameControlls.contentSize.height);
         
+        //Build Game Header
+        gameHeader = [[[GameTypeMainHeader alloc] initWithManager:self] autorelease];
+        gameHeader.anchorPoint = ccp(0,0);
+        gameHeader.position = ccp(0, (gameControlls.contentSize.height + playArea.contentSize.height));
+        
+        
         //Add Game Controlls on top of play area to hide tiles.
         [self addChild:playArea z:1];
         [self addChild:gameControlls z:1];
+        [self addChild:gameHeader z:1];
         
         currentResetPoint = 0;
         isDragging = false;
@@ -51,12 +58,14 @@
 {
     GameTypeMainOverlay *OverlayMenu = [[[GameTypeMainOverlay alloc] initMenuOverlay:self] autorelease];
     [self addChild:OverlayMenu z:2];
+    [self pauseSchedulerAndActions];
     [gameControlls enableControls:(FALSE)];
     [[SimpleAudioEngine sharedEngine] setMute:true];
 }
 
 -(void)closeMenu
 {
+    [self resumeSchedulerAndActions];
     [gameControlls enableControls:(TRUE)];
     [[SimpleAudioEngine sharedEngine] setMute:false];
 }

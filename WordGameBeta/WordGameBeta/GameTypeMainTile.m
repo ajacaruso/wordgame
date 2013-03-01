@@ -31,6 +31,7 @@
         overlaySprite.anchorPoint = ccp(0,0);
         [self addChild:overlaySprite];
         [self togglePreviewMode:FALSE];
+              
         
         if(currentState == 1){
             [self setAsOne];
@@ -81,6 +82,14 @@
         [self setAsOne];
     }else if(state == 2){
         [self setAsTwo];
+        if(![imageOne isEqualToString:@"no_background.png"]){
+            CCParticleSystem *emitter = [CCParticleExplosion node];
+            emitter.position = ccp(20, 20);
+            emitter.scale = 0.4;
+            [emitter setTexture:[[CCTextureCache sharedTextureCache] addImage:imageOne]];
+            [emitter setLife:0.2f];
+            [self addChild: emitter];
+        }
     }
 }
 

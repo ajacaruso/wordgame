@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 #import "GameTypeMainPlayArea.h"
 #import "GameTypeMainControlls.h"
+#import "GameTypeMainHeader.h"
 #import "GameTypeMainLetter.h"
 #import "GameTypeMainTile.h"
 
@@ -18,6 +19,7 @@
     CCMenu *backMenu;
     GameTypeMainPlayArea *playArea;
     GameTypeMainControlls *gameControlls;
+    GameTypeMainHeader *gameHeader;
     GameTypeMainLetter *selLetter;
     CGPoint lastDragPoint;
     int currentResetPoint;
@@ -29,6 +31,7 @@
 @property (nonatomic, retain) CCMenu *backMenu;
 @property (nonatomic, retain) GameTypeMainPlayArea *playArea;
 @property (nonatomic, retain) GameTypeMainControlls *gameControlls;
+@property (nonatomic, retain) GameTypeMainHeader *gameHeader;
 @property (nonatomic, retain) GameTypeMainLetter *selLetter;
 @property (assign) CGPoint lastDragPoint;
 @property (nonatomic, assign) int currentResetPoint;

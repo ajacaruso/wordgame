@@ -14,7 +14,7 @@
 
 - (GameTypeMainPlayArea *)initPlayArea{
     
-    self = [super initWithFile:@"no_background.png" rect:CGRectMake(0, 0, 320, 400)];
+    self = [super initWithFile:@"no_background.png" rect:CGRectMake(0, 0, 320, 380)];
 
     //Build Game Word Bank
     wordBank = [[[GameTypeMainWordBank alloc] initWordBank] autorelease];
