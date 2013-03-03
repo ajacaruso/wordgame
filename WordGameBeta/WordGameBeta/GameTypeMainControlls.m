@@ -20,20 +20,36 @@
                                                          selectedImage: @"controls_submit_btn.png"
                                                                 target:self
                                                               selector:@selector(submitWord:)];
+    CCMenuItemImage *recallButton = [CCMenuItemImage itemFromNormalImage:@"controls_recall_btn.png"
+                                                           selectedImage: @"controls_recall_btn.png"
+                                                                  target:self
+                                                                selector:@selector(recall:)];
+    
+    CCMenuItemImage *shuffleButton = [CCMenuItemImage itemFromNormalImage:@"controls_shuffle_btn.png"
+                                                           selectedImage: @"controls_shuffle_btn.png"
+                                                                  target:self
+                                                                selector:@selector(shuffle:)];
    
     specialItemButton = [CCMenuItemImage itemFromNormalImage:@"arrow_down_button.png"
                                                            selectedImage: @"arrow_down_button.png"
                                                                   target:self
                                                                 selector:@selector(changeSpecial:)];
     
-    controllMenu = [CCMenu menuWithItems: submitButton, specialItemButton, nil];
-    [controllMenu alignItemsHorizontallyWithPadding: 20.0f];
-    controllMenu.position  = ccp(60, 30);
+    controllMenu = [CCMenu menuWithItems: submitButton, recallButton, shuffleButton, specialItemButton, nil];
+    [controllMenu alignItemsHorizontallyWithPadding: 30.0f];
+    controllMenu.position  = ccp(160, 30);
     [self addChild:controllMenu];
 
     gameManager = manager;
     specialAbility = specialDown;
     return self;
+}
+
+- (void) recall: (CCMenuItem  *) menuItem{
+    [gameManager recall];
+}
+- (void) shuffle: (CCMenuItem  *) menuItem{
+    [gameManager shuffle];
 }
 
 - (void) submitWord: (CCMenuItem  *) menuItem

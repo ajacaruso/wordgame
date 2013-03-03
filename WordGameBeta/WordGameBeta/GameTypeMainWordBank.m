@@ -24,6 +24,12 @@
 
 - (void)createInitialWordBank{
     
+    for(GameTypeMainLetter *letter in letterBankArray){
+        [letter removeFromParentAndCleanup:YES];
+    }
+    
+    letterBankArray = [[NSMutableArray alloc] init];
+    
     for(int i = 0; i < 7; i++){
         GameTypeMainLetter *newLetter = [[GameTypeMainLetter alloc] initLetter];
         newLetter.position =  ccp(((newLetter.contentSize.width+5)*i)+((newLetter.contentSize.width/4)-5), ((self.contentSize.height/2) - (newLetter.contentSize.height/2)));

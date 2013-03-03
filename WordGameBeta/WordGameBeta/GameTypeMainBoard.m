@@ -192,6 +192,12 @@
         [[array objectAtIndex:0] setActive:FALSE];
         [[array objectAtIndex:0] removeFromParentAndCleanup:YES];
     }
+    
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    int score = [defs integerForKey:@"score"] + 1;
+    [defs setInteger:score forKey:@"score"];
+
+    
     [boardLetters removeAllObjects];
 }
 
@@ -521,9 +527,6 @@
                     if(![tilesToChange containsObject:tileUpdate]){
                         [tilesToChange addObject:tileUpdate];
                     }
-                    if(![tileUpdate getUseableTwo]){
-                        isBlocked = true;
-                    }
                 }
                 
             }
@@ -534,9 +537,6 @@
                     if(![tilesToChange containsObject:tileUpdate]){
                         [tilesToChange addObject:tileUpdate];
                     }
-                    if(![tileUpdate getUseableTwo]){
-                        isBlocked = true;
-                    }
                 }
             }
         }else if ([specialAbility isEqual:specialLeft]) {
@@ -545,9 +545,6 @@
                     GameTypeMainTile *tileUpdate = [self tileAtCol:col andRow:row-r];
                     if(![tilesToChange containsObject:tileUpdate]){
                         [tilesToChange addObject:tileUpdate];
-                    }
-                    if(![tileUpdate getUseableTwo]){
-                        isBlocked = true;
                     }
                 }
                 
@@ -558,9 +555,6 @@
                     GameTypeMainTile *tileUpdate = [self tileAtCol:col andRow:row+r];
                     if(![tilesToChange containsObject:tileUpdate]){
                         [tilesToChange addObject:tileUpdate];
-                    }
-                    if(![tileUpdate getUseableTwo]){
-                        isBlocked = true;
                     }
                 }
             }

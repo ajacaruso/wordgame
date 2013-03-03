@@ -13,5 +13,8 @@
 
 - (GameTypeMainControlls*)initWithControlls:(NSString *)Controlls withManager:manager;
 - (NSString *)getSpecialAbility;
+- (void)recall: (CCMenuItem  *) menuItem;
+- (void)shuffle: (CCMenuItem  *) menuItem;
+- (void) submitWord: (CCMenuItem  *) menuItem;
 
 @end

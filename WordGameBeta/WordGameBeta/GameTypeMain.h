@@ -41,6 +41,9 @@
 
 - (void)openMenu;
 - (void)closeMenu;
+- (void)recall;
+- (void)recallLetter:(GameTypeMainLetter *) letter;
+- (void)shuffle;
 - (void)submitWord:(NSString *)specialAbility;
 - (void)moveBoard:(ccTime)dt;
 - (void)checkForPanOrSubmit:(ccTime)dt;

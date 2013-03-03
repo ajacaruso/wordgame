@@ -43,6 +43,10 @@
         [[SimpleAudioEngine sharedEngine] setMute:false];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"game_type_main_background.mp3"];
         
+        //Set Game Score to 0
+        NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+        [defs setInteger:0 forKey:@"score"];
+        
     }
 	return self;
 }
@@ -58,20 +62,54 @@
 {
     GameTypeMainOverlay *OverlayMenu = [[[GameTypeMainOverlay alloc] initMenuOverlay:self] autorelease];
     [self addChild:OverlayMenu z:2];
-    [self pauseSchedulerAndActions];
-    [gameControlls enableControls:(FALSE)];
+    [[CCScheduler sharedScheduler] pauseTarget:self];
+    [[CCScheduler sharedScheduler] pauseTarget:gameHeader];
+    [gameHeader enableControls:(FALSE)];
     [[SimpleAudioEngine sharedEngine] setMute:true];
 }
 
 -(void)closeMenu
 {
-    [self resumeSchedulerAndActions];
-    [gameControlls enableControls:(TRUE)];
+    [[CCScheduler sharedScheduler] resumeTarget:self];
+    [[CCScheduler sharedScheduler] resumeTarget:gameHeader];
+    [gameHeader enableControls:(TRUE)];
     [[SimpleAudioEngine sharedEngine] setMute:false];
+}
+
+-(void)recall{
+    NSMutableArray *letterArray = [playArea.wordBank getLetterBankArray];
+    for(int l = 0; l < [letterArray count]; l++){
+        [self recallLetter:[letterArray objectAtIndex:l]];
+    }
+    [playArea.gameBoard removePreviewFromAllTiles];
+}
+
+-(void)recallLetter:(GameTypeMainLetter *) letter{
+    [self changeContainerOfSprite:letter to:playArea.wordBank];
+    [letter toggleOverlayVisible:false];
+    [letter goToOriginalPosition];
+    
+    //Check If Letter Was On Board and Remove it from boardLetters if so
+    //Also set its tile to useable true
+    for(NSMutableArray *array in playArea.gameBoard.boardLetters){
+        if([array objectAtIndex:0] == letter){
+            [[array objectAtIndex:1] setUseable:true];
+            [playArea.gameBoard.boardLetters removeObject:array];
+            break;
+        }
+    }
+}
+
+-(void)shuffle{
+    [self recall];
+    [playArea.wordBank createInitialWordBank];
 }
 
 -(void)submitWord:(NSString *)specialAbility{
     [playArea submitWord:specialAbility];
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    int score = [defs integerForKey:@"score"];
+    [gameHeader setScore:[NSString stringWithFormat:@"%d",score]];
 }
 
 
@@ -86,6 +124,20 @@
     CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
         [playArea.gameBoard addBoardMoveOffset:tileSize];
         [self checkMoveCompleted];
+        
+        //Check Letters to Recall
+        for(NSMutableArray *array in [playArea.gameBoard boardLetters]){
+            
+            GameTypeMainLetter *letter = [array objectAtIndex:0];
+            [self changeContainerOfSprite:letter to:playArea];
+            
+            if(![self spriteIsInBoard:letter]){
+                [self recallLetter:letter];
+            }else{
+                [self changeContainerOfSprite:letter to:playArea.gameBoard.boardLayer];
+            };
+            
+        }
     }];
     
     [[SimpleAudioEngine sharedEngine] playEffect:@"game_type_main_scrollup.mp3"];
@@ -264,7 +316,7 @@
         [self unschedule:@selector(moveBoard:)];
         GameTypeMainCompleted *CompletedMenu = [[[GameTypeMainCompleted alloc] initMenuOverlay:self] autorelease];
         [self addChild:CompletedMenu z:2];
-        [gameControlls enableControls:(FALSE)];
+        [gameHeader enableControls:(FALSE)];
     }else{
         [playArea.gameBoard cleanupBoard];
     }

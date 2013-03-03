@@ -26,6 +26,9 @@
 		AAE5ACBB166922E6004414C8 /* gametypemain_1.json in Resources */ = {isa = PBXBuildFile; fileRef = AAE5ACBA166922E6004414C8 /* gametypemain_1.json */; };
 		AAE5ACE6167E5424004414C8 /* gametypemain_2.json in Resources */ = {isa = PBXBuildFile; fileRef = AAE5ACE4167E5424004414C8 /* gametypemain_2.json */; };
 		AAE5ACE7167E5424004414C8 /* gametypemain_3.json in Resources */ = {isa = PBXBuildFile; fileRef = AAE5ACE5167E5424004414C8 /* gametypemain_3.json */; };
+		EA1D50C216E1668500AA463A /* controls_pause_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1D50BF16E1668500AA463A /* controls_pause_btn.png */; };
+		EA1D50C316E1668500AA463A /* controls_recall_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1D50C016E1668500AA463A /* controls_recall_btn.png */; };
+		EA1D50C416E1668500AA463A /* controls_shuffle_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1D50C116E1668500AA463A /* controls_shuffle_btn.png */; };
 		EA3B2E8A160B7CDB0046800B /* GrayTile.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3B2E89160B7CDB0046800B /* GrayTile.png */; };
 		EA3B2F2C160BB7400046800B /* no_background.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3B2F2B160BB7400046800B /* no_background.png */; };
 		EA3B2F33160BC3F40046800B /* GameTypeMainLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3B2F32160BC3F30046800B /* GameTypeMainLetter.m */; };
@@ -225,6 +228,9 @@
 		AAE5ACBA166922E6004414C8 /* gametypemain_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = gametypemain_1.json; path = Assets/LocalData/GameData/gametypemain_1.json; sourceTree = "<group>"; };
 		AAE5ACE4167E5424004414C8 /* gametypemain_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = gametypemain_2.json; path = Assets/LocalData/GameData/gametypemain_2.json; sourceTree = "<group>"; };
 		AAE5ACE5167E5424004414C8 /* gametypemain_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = gametypemain_3.json; path = Assets/LocalData/GameData/gametypemain_3.json; sourceTree = "<group>"; };
+		EA1D50BF16E1668500AA463A /* controls_pause_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controls_pause_btn.png; path = Assets/Images/Game/GameTypeMain/Controls/controls_pause_btn.png; sourceTree = "<group>"; };
+		EA1D50C016E1668500AA463A /* controls_recall_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controls_recall_btn.png; path = Assets/Images/Game/GameTypeMain/Controls/controls_recall_btn.png; sourceTree = "<group>"; };
+		EA1D50C116E1668500AA463A /* controls_shuffle_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controls_shuffle_btn.png; path = Assets/Images/Game/GameTypeMain/Controls/controls_shuffle_btn.png; sourceTree = "<group>"; };
 		EA3B2E89160B7CDB0046800B /* GrayTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrayTile.png; path = Assets/Images/Game/GameTypeMain/Tiles/GrayTile.png; sourceTree = "<group>"; };
 		EA3B2F2B160BB7400046800B /* no_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_background.png; path = Assets/Images/Game/GameTypeMain/no_background.png; sourceTree = "<group>"; };
 		EA3B2F31160BC3F30046800B /* GameTypeMainLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTypeMainLetter.h; sourceTree = "<group>"; };
@@ -999,6 +1005,9 @@
 		EA63DDEF162610B700189C0B /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				EA1D50BF16E1668500AA463A /* controls_pause_btn.png */,
+				EA1D50C016E1668500AA463A /* controls_recall_btn.png */,
+				EA1D50C116E1668500AA463A /* controls_shuffle_btn.png */,
 				EA63DDF31626123C00189C0B /* controls_submit_btn.png */,
 			);
 			name = Controls;
@@ -1384,6 +1393,9 @@
 				AADD105C16B2267B00C43C17 /* game_type_main_invalid_overlay.png in Resources */,
 				AADD105D16B2267B00C43C17 /* game_type_main_valid_overlay.png in Resources */,
 				AA20C1B816E04020006D1DDA /* progress_bar.png in Resources */,
+				EA1D50C216E1668500AA463A /* controls_pause_btn.png in Resources */,
+				EA1D50C316E1668500AA463A /* controls_recall_btn.png in Resources */,
+				EA1D50C416E1668500AA463A /* controls_shuffle_btn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

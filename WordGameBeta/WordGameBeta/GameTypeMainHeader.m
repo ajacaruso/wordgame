@@ -18,13 +18,13 @@
     self = [super initWithFile:@"controlls_background.png" rect:CGRectMake(0, 0, 320, 40)];
     
     //Controll Menu
-    CCMenuItemImage *menuButton = [CCMenuItemImage itemFromNormalImage:@"BackArrow_Button.png"
-                                                         selectedImage: @"BackArrow_Button.png"
+    CCMenuItemImage *menuButton = [CCMenuItemImage itemFromNormalImage:@"controls_pause_btn.png"
+                                                         selectedImage: @"controls_pause_btn.png"
                                                                 target:self
                                                               selector:@selector(openMenu:)];
     controllMenu = [CCMenu menuWithItems:menuButton, nil];
     [controllMenu alignItemsHorizontallyWithPadding: 20.0f];
-    controllMenu.position  = ccp(25, 25);
+    controllMenu.position  = ccp(27, 20);
     [self addChild:controllMenu];
         
     timer = [[CCProgressTimer alloc] initWithFile:@"progress_bar.png"];
@@ -45,8 +45,8 @@
 }
 
 -(void)update:(ccTime)dt {
-    timer.percentage -= dt * 50;
-    NSLog(@"testing %f", timer.percentage);
+    float scrollRate = (100.0 / (float)boardScrollRate);
+    timer.percentage -= dt * scrollRate;
     if (timer.percentage <= 0) {
         timer.percentage = 100;
     }
