@@ -12,6 +12,7 @@
 #import "StatsPage.h"
 #import "CreditsPage.h"
 #import "GameSettingsPage.h"
+#import "GameTypeMainLevelSelector.h"
 
 @interface MenuManager : NSObject
 
@@ -21,5 +22,6 @@
 +(void)goToStatsPage;
 +(void)goToCreditsPage;
 +(void)goToGameSettingsPage;
++(void)goToGameLevelSelection;
 
 @end

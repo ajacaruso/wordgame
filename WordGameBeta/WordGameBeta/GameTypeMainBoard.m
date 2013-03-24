@@ -64,10 +64,9 @@
     
     
     for( int c = 0; c <  ([tiles count] / tilesInRow); c++){
-        
         NSMutableArray *colArray = [[NSMutableArray alloc]init];
         
-        for (int r = 0; r < tilesInRow; r++) {
+        for (int r = 0; r < 8; r++) {
             
             NSDictionary *tile = [tiles objectAtIndex:counter];
             counter++;
@@ -351,8 +350,15 @@
             }
         }
     }
-    
     return false;
+    /*
+    if ([boardLetters count] > 0) {
+        return true;
+    }else{
+        
+    }
+     */
+    
 }
 
 - (void)cleanupBoard{
@@ -578,6 +584,61 @@
         for (int r = 0; r < [colArray count]; r++) {
             [[colArray objectAtIndex:r] togglePreviewMode:FALSE];
         }
+    }
+}
+
+- (void) displayEdges{
+    
+    NSMutableArray *topEdges = [[NSMutableArray  alloc] init];
+    NSMutableArray *bottomEdges = [[NSMutableArray  alloc] init];
+    NSMutableArray *rightEdges = [[NSMutableArray  alloc] init];
+    NSMutableArray *leftEdges = [[NSMutableArray  alloc] init];
+    
+    for( int c = 0; c < [boardArray count]; c++){
+        
+        NSMutableArray *colArray = [boardArray objectAtIndex:c];
+        
+        for (int r = 0; r < [colArray count]; r++) {
+            GameTypeMainTile *tile = [colArray objectAtIndex:r];
+            [tile setAllEdgesVisible:false];
+            
+            if([tile getUseable]){
+                //Check Top
+                if(c != 0){
+                    GameTypeMainTile *topTile = [[boardArray objectAtIndex:c-1]objectAtIndex:r];
+                    if(![topTile getUseable]){ [bottomEdges addObject:topTile]; }
+                }
+                //Check Bottom
+                if(c != [boardArray count]){
+                    GameTypeMainTile *bottomTile = [[boardArray objectAtIndex:c+1]objectAtIndex:r];
+                    if(![bottomTile getUseable]){ [topEdges addObject:bottomTile]; }
+                }
+                //Check Right
+                if(r != [colArray count]){
+                    GameTypeMainTile *rightTile = [[boardArray objectAtIndex:c]objectAtIndex:r+1];
+                    if(![rightTile getUseable]){ [leftEdges addObject:rightTile]; }
+                }
+                //Check Left
+                if(r != 0){
+                    GameTypeMainTile *leftTile = [[boardArray objectAtIndex:c]objectAtIndex:r-1];
+                    if(![leftTile getUseable]){ [rightEdges addObject:leftTile]; }
+                }
+            }
+        }
+    }
+    
+    //Set Edges
+    for(GameTypeMainTile *tile in topEdges){
+        [tile setTopEdgeVisible:true];
+    }
+    for(GameTypeMainTile *tile in bottomEdges){
+        [tile setBottomEdgeVisible:true];
+    }
+    for(GameTypeMainTile *tile in rightEdges){
+        [tile setRightEdgeVisible:true];
+    }
+    for(GameTypeMainTile *tile in leftEdges){
+        [tile setLeftEdgeVisible:true];
     }
 }
 

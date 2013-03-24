@@ -13,7 +13,6 @@
 +(void)createGameTypeMain {
     
     [[CCDirector sharedDirector] replaceScene: [CCTransitionFade transitionWithDuration:0.5f scene: [GameTypeMain node]]];
-    
 }
 
 @end

@@ -208,4 +208,16 @@
     
 }
 
++(int)getLevelSpeed{
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    return [defs integerForKey:@"levelSpeed"] + 1;
+}
+
++(void)setLevelSpeed:(int)speed{
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    [defs setInteger:speed forKey:@"levelSpeed"];
+}
+
+
+
 @end

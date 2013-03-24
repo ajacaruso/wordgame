@@ -35,7 +35,7 @@
         isDragging = false;
         
         //Set Timers
-        [self schedule:@selector(moveBoard:) interval:boardScrollRate];
+        [self schedule:@selector(moveBoard:) interval:[Utils getLevelSpeed]];
         [self schedule:@selector(checkForPanOrSubmit:) interval:0.01f];
         
         lastDirection = @"";
@@ -47,6 +47,8 @@
         NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
         [defs setInteger:0 forKey:@"score"];
         
+        //Set Edges
+        [playArea.gameBoard displayEdges];
     }
 	return self;
 }
@@ -81,7 +83,6 @@
     for(int l = 0; l < [letterArray count]; l++){
         [self recallLetter:[letterArray objectAtIndex:l]];
     }
-    [playArea.gameBoard removePreviewFromAllTiles];
 }
 
 -(void)recallLetter:(GameTypeMainLetter *) letter{
@@ -98,6 +99,27 @@
             break;
         }
     }
+    [self removePreviewAndOverlayOnTiles];
+}
+
+-(void)returnLetterFromMove:(NSMutableArray *) letterArray{
+    
+    for(GameTypeMainLetter *letter in letterArray){
+        [self changeContainerOfSprite:letter to:playArea.wordBank];
+        [letter toggleOverlayVisible:false];
+        [letter goToOriginalPosition];
+        
+        //Check If Letter Was On Board and Remove it from boardLetters if so
+        //Also set its tile to useable true
+        for(NSMutableArray *array in playArea.gameBoard.boardLetters){
+            if([array objectAtIndex:0] == letter){
+                [[array objectAtIndex:1] setUseable:true];
+                [playArea.gameBoard.boardLetters removeObject:array];
+                break;
+            }
+        }
+    }
+    [self removePreviewAndOverlayOnTiles];
 }
 
 -(void)shuffle{
@@ -123,21 +145,26 @@
     CCMoveTo * actionMove = [CCMoveTo actionWithDuration:1 position:ccp(newX, newY)];
     CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
         [playArea.gameBoard addBoardMoveOffset:tileSize];
-        [self checkMoveCompleted];
         
         //Check Letters to Recall
+        NSMutableArray *returnArray = [[NSMutableArray alloc] init];
         for(NSMutableArray *array in [playArea.gameBoard boardLetters]){
-            
+        
             GameTypeMainLetter *letter = [array objectAtIndex:0];
-            [self changeContainerOfSprite:letter to:playArea];
+            [self changeContainerOfSprite:letter to:playArea.gameBoard];
             
-            if(![self spriteIsInBoard:letter]){
-                [self recallLetter:letter];
+            CGRect boardArea = [playArea.gameBoard boundingBox];
+            CGRect spriteRect = CGRectMake(letter.position.x, letter.position.y+(playArea.gameBoard.boardOffset+controlsHeight), letter.contentSize.width, letter.contentSize.height);
+            
+            //Check In Play Area
+            if (!CGRectContainsRect(boardArea, spriteRect)) {
+                [returnArray addObject:letter];
             }else{
                 [self changeContainerOfSprite:letter to:playArea.gameBoard.boardLayer];
             };
-            
         }
+        [self returnLetterFromMove:returnArray];
+        [self checkMoveCompleted];
     }];
     
     [[SimpleAudioEngine sharedEngine] playEffect:@"game_type_main_scrollup.mp3"];
@@ -321,7 +348,7 @@
         [playArea.gameBoard cleanupBoard];
     }
     
-    if(currentResetPoint > tilesInRow){
+    if(currentResetPoint < tilesInRow){
         currentResetPoint++;
     }else{
         currentResetPoint = 0;
@@ -406,6 +433,12 @@
 #pragma mark - Update Board
 - (void)updateBoardState{
     [playArea updateBoardState:[gameControlls getSpecialAbility]];
+}
+
+- (void)removePreviewAndOverlayOnTiles{
+    //Turn off Preview and Tile Overlays
+    [playArea.wordBank setAllLetterOverlaysOff];
+    [playArea.gameBoard removePreviewFromAllTiles];
 }
 
 

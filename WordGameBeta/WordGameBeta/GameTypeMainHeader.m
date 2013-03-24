@@ -8,7 +8,7 @@
 
 #import "GameTypeMainHeader.h"
 #import "GameTypeMainConstants.h"
-
+#import "Utils.h"
 
 @implementation GameTypeMainHeader
 @synthesize controllMenu, gameManager, timer, scoreLabel;
@@ -45,7 +45,7 @@
 }
 
 -(void)update:(ccTime)dt {
-    float scrollRate = (100.0 / (float)boardScrollRate);
+    float scrollRate = (100.0 / (float)[Utils getLevelSpeed]);
     timer.percentage -= dt * scrollRate;
     if (timer.percentage <= 0) {
         timer.percentage = 100;

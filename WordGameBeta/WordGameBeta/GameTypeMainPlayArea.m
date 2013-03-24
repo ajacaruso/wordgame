@@ -38,6 +38,7 @@
         [gameBoard removePreviewFromAllTiles];
         [gameBoard changeTilesForActiveLetters:specialAbility];
         [gameBoard removeAllLetters];
+        [gameBoard displayEdges];
         [wordBank updateWordBank];
         [[SimpleAudioEngine sharedEngine] playEffect:@"game_type_main_submit_explosion.mp3"];
     }else{

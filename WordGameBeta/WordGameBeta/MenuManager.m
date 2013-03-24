@@ -34,5 +34,9 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameSettingsPage scene]]];
 }
 
++(void)goToGameLevelSelection{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameTypeMainLevelSelector scene]]];
+}
+
 
 @end

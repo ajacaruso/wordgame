@@ -13,6 +13,10 @@
     BOOL useableTwo;
     int currentState;
     CCSprite *overlaySprite;
+    CCSprite *edgeTop;
+    CCSprite *edgeRight;
+    CCSprite *edgeBottom;
+    CCSprite *edgeLeft;
 }
 
 @property (nonatomic, assign) BOOL useable;
@@ -26,6 +30,10 @@
 @property (nonatomic, assign) NSString *specialTwo;
 @property (nonatomic, assign) int currentState;
 @property (nonatomic, assign) CCSprite *overlaySprite;
+@property (nonatomic, assign) CCSprite *edgeTop;
+@property (nonatomic, assign) CCSprite *edgeRight;
+@property (nonatomic, assign) CCSprite *edgeBottom;
+@property (nonatomic, assign) CCSprite *edgeLeft;
 
 - (GameTypeMainTile*)initWithFile:(NSString *)file starting:(int)starting image1:(NSString *)image1 isUseable1:(BOOL)isUseable1 special1:(NSString *)special1 image2:(NSString *)image2 isUseable2:(BOOL)isUseable2 special2:(NSString *)special2;
 - (void)setUseable:(BOOL)newUseable;
@@ -40,6 +48,11 @@
 - (void)setAsOne;
 - (void)setAsTwo;
 
+- (void)setAllEdgesVisible: (BOOL)toggle;
+- (void)setTopEdgeVisible: (BOOL)toggle;
+- (void)setBottomEdgeVisible: (BOOL)toggle;
+- (void)setRightEdgeVisible: (BOOL)toggle;
+- (void)setLeftEdgeVisible: (BOOL)toggle;
 - (void)togglePreviewMode:(bool)previewEnabled;
 
 @end

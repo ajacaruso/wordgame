@@ -30,7 +30,6 @@
 		EA1D50C316E1668500AA463A /* controls_recall_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1D50C016E1668500AA463A /* controls_recall_btn.png */; };
 		EA1D50C416E1668500AA463A /* controls_shuffle_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1D50C116E1668500AA463A /* controls_shuffle_btn.png */; };
 		EA3B2E8A160B7CDB0046800B /* GrayTile.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3B2E89160B7CDB0046800B /* GrayTile.png */; };
-		EA3B2F2C160BB7400046800B /* no_background.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3B2F2B160BB7400046800B /* no_background.png */; };
 		EA3B2F33160BC3F40046800B /* GameTypeMainLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3B2F32160BC3F30046800B /* GameTypeMainLetter.m */; };
 		EA5528C9157924F30077CE80 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5528C8157924F30077CE80 /* QuartzCore.framework */; };
 		EA5528CB157924F30077CE80 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5528CA157924F30077CE80 /* OpenGLES.framework */; };
@@ -171,7 +170,16 @@
 		EA65C8601589042300926EB9 /* play_button in Resources */ = {isa = PBXBuildFile; fileRef = EA65C85C1589042300926EB9 /* play_button */; };
 		EA65C8611589042300926EB9 /* stats_button in Resources */ = {isa = PBXBuildFile; fileRef = EA65C85D1589042300926EB9 /* stats_button */; };
 		EA65C86E15890B4300926EB9 /* BackArrow_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65C86D15890B4300926EB9 /* BackArrow_Button.png */; };
+		EA8C961E16E69DFC00B1E3EE /* no_background.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8C961D16E69DFC00B1E3EE /* no_background.png */; };
 		EA911D631607D55200B044D3 /* BrownTile.png in Resources */ = {isa = PBXBuildFile; fileRef = EA911D621607D55200B044D3 /* BrownTile.png */; };
+		EAC384E716EA5B3D00371FF0 /* GameTypeMainLevelSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC384E616EA5B3D00371FF0 /* GameTypeMainLevelSelector.m */; };
+		EAC384EB16EA64E100371FF0 /* easy_button.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC384E816EA64E100371FF0 /* easy_button.png */; };
+		EAC384EC16EA64E100371FF0 /* hard_button.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC384E916EA64E100371FF0 /* hard_button.png */; };
+		EAC384ED16EA64E100371FF0 /* medium_button.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC384EA16EA64E100371FF0 /* medium_button.png */; };
+		EAD0365716E541E5008D5C72 /* tile_edge_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD0365316E541E5008D5C72 /* tile_edge_bottom.png */; };
+		EAD0365816E541E5008D5C72 /* tile_edge_left.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD0365416E541E5008D5C72 /* tile_edge_left.png */; };
+		EAD0365916E541E5008D5C72 /* tile_edge_right.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD0365516E541E5008D5C72 /* tile_edge_right.png */; };
+		EAD0365A16E541E5008D5C72 /* tile_edge_top.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD0365616E541E5008D5C72 /* tile_edge_top.png */; };
 		EAEFF5BD16024E8B00CA1E99 /* GameTypeMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEFF5BC16024E8A00CA1E99 /* GameTypeMain.m */; };
 		EAEFF5C116025A2F00CA1E99 /* MenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEFF5C016025A2E00CA1E99 /* MenuManager.m */; };
 		EAEFF5F01603BF8200CA1E99 /* GameTypeMainWordBank.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEFF5EF1603BF8200CA1E99 /* GameTypeMainWordBank.m */; };
@@ -232,7 +240,6 @@
 		EA1D50C016E1668500AA463A /* controls_recall_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controls_recall_btn.png; path = Assets/Images/Game/GameTypeMain/Controls/controls_recall_btn.png; sourceTree = "<group>"; };
 		EA1D50C116E1668500AA463A /* controls_shuffle_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controls_shuffle_btn.png; path = Assets/Images/Game/GameTypeMain/Controls/controls_shuffle_btn.png; sourceTree = "<group>"; };
 		EA3B2E89160B7CDB0046800B /* GrayTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GrayTile.png; path = Assets/Images/Game/GameTypeMain/Tiles/GrayTile.png; sourceTree = "<group>"; };
-		EA3B2F2B160BB7400046800B /* no_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_background.png; path = Assets/Images/Game/GameTypeMain/no_background.png; sourceTree = "<group>"; };
 		EA3B2F31160BC3F30046800B /* GameTypeMainLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTypeMainLetter.h; sourceTree = "<group>"; };
 		EA3B2F32160BC3F30046800B /* GameTypeMainLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTypeMainLetter.m; sourceTree = "<group>"; };
 		EA3B2F34160BC44D0046800B /* GameTypeMainConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTypeMainConstants.h; sourceTree = "<group>"; };
@@ -506,7 +513,17 @@
 		EA65C85C1589042300926EB9 /* play_button */ = {isa = PBXFileReference; lastKnownFileType = file; name = play_button; path = Assets/Images/Menu/MainMenu/play_button; sourceTree = "<group>"; };
 		EA65C85D1589042300926EB9 /* stats_button */ = {isa = PBXFileReference; lastKnownFileType = file; name = stats_button; path = Assets/Images/Menu/MainMenu/stats_button; sourceTree = "<group>"; };
 		EA65C86D15890B4300926EB9 /* BackArrow_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackArrow_Button.png; path = Assets/Images/General/BackArrow_Button.png; sourceTree = "<group>"; };
+		EA8C961D16E69DFC00B1E3EE /* no_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_background.png; path = Assets/Images/Game/GameTypeMain/Tiles/no_background.png; sourceTree = "<group>"; };
 		EA911D621607D55200B044D3 /* BrownTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BrownTile.png; path = Assets/Images/Game/GameTypeMain/Tiles/BrownTile.png; sourceTree = "<group>"; };
+		EAC384E516EA5B3D00371FF0 /* GameTypeMainLevelSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTypeMainLevelSelector.h; sourceTree = "<group>"; };
+		EAC384E616EA5B3D00371FF0 /* GameTypeMainLevelSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTypeMainLevelSelector.m; sourceTree = "<group>"; };
+		EAC384E816EA64E100371FF0 /* easy_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = easy_button.png; path = Assets/Images/Menu/MainMenu/easy_button.png; sourceTree = "<group>"; };
+		EAC384E916EA64E100371FF0 /* hard_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hard_button.png; path = Assets/Images/Menu/MainMenu/hard_button.png; sourceTree = "<group>"; };
+		EAC384EA16EA64E100371FF0 /* medium_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = medium_button.png; path = Assets/Images/Menu/MainMenu/medium_button.png; sourceTree = "<group>"; };
+		EAD0365316E541E5008D5C72 /* tile_edge_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tile_edge_bottom.png; path = Assets/Images/Game/GameTypeMain/Tiles/tile_edge_bottom.png; sourceTree = "<group>"; };
+		EAD0365416E541E5008D5C72 /* tile_edge_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tile_edge_left.png; path = Assets/Images/Game/GameTypeMain/Tiles/tile_edge_left.png; sourceTree = "<group>"; };
+		EAD0365516E541E5008D5C72 /* tile_edge_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tile_edge_right.png; path = Assets/Images/Game/GameTypeMain/Tiles/tile_edge_right.png; sourceTree = "<group>"; };
+		EAD0365616E541E5008D5C72 /* tile_edge_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tile_edge_top.png; path = Assets/Images/Game/GameTypeMain/Tiles/tile_edge_top.png; sourceTree = "<group>"; };
 		EAEFF5BB16024E8A00CA1E99 /* GameTypeMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTypeMain.h; sourceTree = "<group>"; };
 		EAEFF5BC16024E8A00CA1E99 /* GameTypeMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTypeMain.m; sourceTree = "<group>"; };
 		EAEFF5BF16025A2D00CA1E99 /* MenuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuManager.h; sourceTree = "<group>"; };
@@ -1020,6 +1037,8 @@
 				EA65C7E41587E62500926EB9 /* MainMenu.m */,
 				EA65C7F31587E8C300926EB9 /* OptionsMenu.h */,
 				EA65C7F41587E8C300926EB9 /* OptionsMenu.m */,
+				EAC384E516EA5B3D00371FF0 /* GameTypeMainLevelSelector.h */,
+				EAC384E616EA5B3D00371FF0 /* GameTypeMainLevelSelector.m */,
 			);
 			name = Menus;
 			sourceTree = "<group>";
@@ -1097,6 +1116,9 @@
 		EA65C82A1587F1F300926EB9 /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				EAC384E816EA64E100371FF0 /* easy_button.png */,
+				EAC384E916EA64E100371FF0 /* hard_button.png */,
+				EAC384EA16EA64E100371FF0 /* medium_button.png */,
 				EA65C85B1589042300926EB9 /* options_button */,
 				EA65C85C1589042300926EB9 /* play_button */,
 				EA65C85D1589042300926EB9 /* stats_button */,
@@ -1148,7 +1170,6 @@
 				AA20C1B716E04020006D1DDA /* progress_bar.png */,
 				AA4018E91651BA6B007B8C6F /* Special */,
 				EA63DDEF162610B700189C0B /* Controls */,
-				EA3B2F2B160BB7400046800B /* no_background.png */,
 				EAEFF5F51603C45E00CA1E99 /* Letters */,
 				EAEFF5F41603C3F100CA1E99 /* Tiles */,
 				EAEFF5F21603C0B600CA1E99 /* wordbank_background.png */,
@@ -1228,6 +1249,11 @@
 		EAEFF5F41603C3F100CA1E99 /* Tiles */ = {
 			isa = PBXGroup;
 			children = (
+				EA8C961D16E69DFC00B1E3EE /* no_background.png */,
+				EAD0365316E541E5008D5C72 /* tile_edge_bottom.png */,
+				EAD0365416E541E5008D5C72 /* tile_edge_left.png */,
+				EAD0365516E541E5008D5C72 /* tile_edge_right.png */,
+				EAD0365616E541E5008D5C72 /* tile_edge_top.png */,
 				AADD105716B2263600C43C17 /* game_type_main_preview_overlay.png */,
 				EA3B2E89160B7CDB0046800B /* GrayTile.png */,
 				EA911D621607D55200B044D3 /* BrownTile.png */,
@@ -1374,7 +1400,6 @@
 				EAEFF62D1603C48100CA1E99 /* GreenTile.png in Resources */,
 				EA911D631607D55200B044D3 /* BrownTile.png in Resources */,
 				EA3B2E8A160B7CDB0046800B /* GrayTile.png in Resources */,
-				EA3B2F2C160BB7400046800B /* no_background.png in Resources */,
 				EA63DDF41626123C00189C0B /* controls_submit_btn.png in Resources */,
 				AA4018EF1651BA7C007B8C6F /* arrow_down_button.png in Resources */,
 				AA4018F01651BA7C007B8C6F /* arrow_left_button.png in Resources */,
@@ -1396,6 +1421,14 @@
 				EA1D50C216E1668500AA463A /* controls_pause_btn.png in Resources */,
 				EA1D50C316E1668500AA463A /* controls_recall_btn.png in Resources */,
 				EA1D50C416E1668500AA463A /* controls_shuffle_btn.png in Resources */,
+				EAD0365716E541E5008D5C72 /* tile_edge_bottom.png in Resources */,
+				EAD0365816E541E5008D5C72 /* tile_edge_left.png in Resources */,
+				EAD0365916E541E5008D5C72 /* tile_edge_right.png in Resources */,
+				EAD0365A16E541E5008D5C72 /* tile_edge_top.png in Resources */,
+				EA8C961E16E69DFC00B1E3EE /* no_background.png in Resources */,
+				EAC384EB16EA64E100371FF0 /* easy_button.png in Resources */,
+				EAC384EC16EA64E100371FF0 /* hard_button.png in Resources */,
+				EAC384ED16EA64E100371FF0 /* medium_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1521,6 +1554,7 @@
 				EAEFF5F01603BF8200CA1E99 /* GameTypeMainWordBank.m in Sources */,
 				EA3B2F33160BC3F40046800B /* GameTypeMainLetter.m in Sources */,
 				AA20C1B516E0400E006D1DDA /* GameTypeMainHeader.m in Sources */,
+				EAC384E716EA5B3D00371FF0 /* GameTypeMainLevelSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

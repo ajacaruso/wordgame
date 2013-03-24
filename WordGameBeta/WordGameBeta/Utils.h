@@ -19,5 +19,7 @@
 +(NSDictionary *)getRandomLevel;
 +(NSDictionary *)getLevel:(NSString *)level;
 +(NSMutableDictionary *)createLetterDictionary;
++(int)getLevelSpeed;
++(void)setLevelSpeed:(int)speed;
 
 @end

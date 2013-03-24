@@ -39,13 +39,6 @@
         
         [self addChild:mainMenu];
         
-        /**** 
-         
-        Utils Call Example:
-         
-        NSLog(@"Testing - %@", [Utils randomizeLetter]);
-         
-        *****/
         [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
         
 	}
@@ -54,7 +47,7 @@
 
 - (void) playGame: (CCMenuItem  *) menuItem 
 {
-    [GameManager createGameTypeMain];
+    [MenuManager goToGameLevelSelection];
 }
 
 -(void) showOptions: (CCMenuItem *) menuItem

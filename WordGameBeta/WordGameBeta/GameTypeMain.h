@@ -43,6 +43,7 @@
 - (void)closeMenu;
 - (void)recall;
 - (void)recallLetter:(GameTypeMainLetter *) letter;
+- (void)returnLetterFromMove:(NSMutableArray *) letterArray;
 - (void)shuffle;
 - (void)submitWord:(NSString *)specialAbility;
 - (void)moveBoard:(ccTime)dt;
@@ -63,5 +64,6 @@
 - (void)returnToLastPosition:(GameTypeMainLetter*)Letter;
 
 - (void)updateBoardState;
+- (void)removePreviewAndOverlayOnTiles;
 
 @end

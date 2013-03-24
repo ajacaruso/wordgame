@@ -2,7 +2,6 @@
 #import "cocos2d.h"
 #import "MenuManager.h"
 #import "GameManager.h"
-#import "Utils.h"
 
 @interface MainMenu : CCLayer
 {
