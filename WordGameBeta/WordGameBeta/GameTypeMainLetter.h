@@ -17,6 +17,7 @@
 @property (nonatomic, assign) CCSprite *overlaySprite;
 
 - (GameTypeMainLetter*)initLetter;
+- (GameTypeMainLetter*)initLetterWithLetter:(NSString *)theLetter;
 - (void)setLetter:(NSString *)newLetter;
 - (NSString *)getLetter;
 - (void)setOriginalPosition:(CGPoint)originalPosition;
@@ -29,5 +30,6 @@
 - (BOOL)getActive;
 - (void)toggleOverlayState:(bool)isCorrect;
 - (void)toggleOverlayVisible:(bool)previewEnabled;
+- (void)toggleSelectedState:(bool)isSelected;
 
 @end

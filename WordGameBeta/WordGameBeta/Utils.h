@@ -12,6 +12,7 @@
 @interface Utils : NSObject
 
 +(NSString *)randomizeLetter;
++(NSString *)randomizeVowl;
 +(BOOL)isValidWord:(NSString *) word;
 +(bool)isRealWord:(NSString *)currentWord;
 +(bool)isAllowedWordType:(NSString *)currentWord;
@@ -19,6 +20,7 @@
 +(NSDictionary *)getRandomLevel;
 +(NSDictionary *)getLevel:(NSString *)level;
 +(NSMutableDictionary *)createLetterDictionary;
++(NSMutableDictionary *)createVowlDictionary;
 +(int)getLevelSpeed;
 +(void)setLevelSpeed:(int)speed;
 

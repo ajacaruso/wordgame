@@ -246,7 +246,7 @@
         if(selLetter){
             isDragging = false;
             selLetter.opacity = 255;
-            
+            [selLetter toggleSelectedState:FALSE];
             
             
             if([self spriteIsInWordBank:selLetter]){
@@ -317,6 +317,7 @@
     if (newSprite != nil) {
         selLetter = newSprite;
         selLetter.opacity = 150;
+        [selLetter toggleSelectedState:TRUE];
         [self changeContainerOfSprite:selLetter to:playArea];
         
         

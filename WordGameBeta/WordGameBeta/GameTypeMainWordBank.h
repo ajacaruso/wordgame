@@ -13,5 +13,7 @@
 - (NSMutableArray *)getLetterBankArray;
 - (void)updateWordBank;
 - (void)setAllLetterOverlaysOff;
+- (bool)bankContainsVowl;
+- (bool)stringContainsVowl:(NSString *)letterString;
 
 @end

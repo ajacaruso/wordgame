@@ -23,6 +23,25 @@
     return returnString;
 }
 
++(NSString *)randomizeVowl{
+    
+    NSString *returnString = [[NSString alloc] initWithString:@"a"];
+    NSMutableDictionary *LetterDictionary = [self createVowlDictionary];
+    NSMutableArray *LetterArray = [[NSMutableArray alloc] init];
+    
+    [LetterDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
+        int numberOfLetter = [object intValue];
+        for(int i = 0; i < numberOfLetter; i++){
+            NSString *LetterString = [[NSString alloc] initWithString:key];
+            [LetterArray addObject:LetterString];
+        }
+    }];
+    
+    NSUInteger randomIndex = arc4random() % [LetterArray count];
+    returnString = [LetterArray objectAtIndex:randomIndex];
+    return returnString;
+}
+
 +(NSMutableDictionary *)createLetterDictionary{
     
     NSMutableDictionary *LetterDictionary = [[NSMutableDictionary alloc] init];
@@ -65,6 +84,19 @@
     8 points: J ×2, X ×2
     10 points: Q ×2, Z ×2
      */
+}
+
++(NSMutableDictionary *)createVowlDictionary{
+    
+    NSMutableDictionary *LetterDictionary = [[NSMutableDictionary alloc] init];
+    
+    [LetterDictionary setObject:[NSNumber numberWithInt:16] forKey:@"a"];
+    [LetterDictionary setObject:[NSNumber numberWithInt:24] forKey:@"e"];
+    [LetterDictionary setObject:[NSNumber numberWithInt:13] forKey:@"i"];
+    [LetterDictionary setObject:[NSNumber numberWithInt:15] forKey:@"o"];
+    [LetterDictionary setObject:[NSNumber numberWithInt:7] forKey:@"u"];
+    
+    return LetterDictionary;
 }
 
 +(BOOL) isValidWord:(NSString *)word {

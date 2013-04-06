@@ -31,6 +31,25 @@
     return self;
 }
 
+- (GameTypeMainLetter*)initLetterWithLetter:(NSString *)theLetter{
+    
+    NSString *letterImage = [NSString stringWithFormat:@"%@.png", theLetter];
+    
+    self = [super initWithFile:letterImage rect:CGRectMake(0, 0, 40, 40)];
+    
+    letter = [[NSString alloc] initWithString:theLetter];
+    
+    self.anchorPoint=ccp(0,0);
+    active = TRUE;
+    
+    overlaySprite = [[CCSprite alloc] initWithFile:@"game_type_main_invalid_overlay.png"];
+    overlaySprite.anchorPoint = ccp(0,0);
+    [self addChild:overlaySprite];
+    [self toggleOverlayVisible:FALSE];
+    
+    return self;
+}
+
 - (void)setLetter:(NSString *)newLetter{
     letter = newLetter;
 }
@@ -84,5 +103,12 @@
 - (void)toggleOverlayVisible:(bool)previewEnabled{
     [overlaySprite setVisible:previewEnabled];
 }
+
+- (void)toggleSelectedState:(bool)isSelected {
+    [self toggleOverlayVisible:isSelected];
+    CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:@"game_type_main_selected_overlay.png"];
+    [overlaySprite setTexture:tex];
+}
+
 
 @end

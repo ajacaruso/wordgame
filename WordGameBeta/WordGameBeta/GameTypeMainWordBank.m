@@ -8,6 +8,8 @@
 
 #import "GameTypeMainWordBank.h"
 #import "GameTypeMainLetter.h"
+#import "Utils.h"
+
 @implementation GameTypeMainWordBank
 @synthesize letterBankArray;
 
@@ -39,16 +41,34 @@
         [letterBankArray addObject:newLetter];
         [self addChild: newLetter];
     }
+    
+    if(![self bankContainsVowl]){
+        [self createInitialWordBank];
+    }
      
 }
 
 - (void)updateWordBank{
     
+    bool setFirstUpdateToBeVowl = false;
+    
+    if(![self bankContainsVowl]){
+        setFirstUpdateToBeVowl = true;
+    }
+    
     //Check for Inactive Letters
     for(int l = 0; l < [letterBankArray count]; l++){
         if(![[letterBankArray objectAtIndex:l] getActive]){
             GameTypeMainLetter *Letter = [letterBankArray objectAtIndex:l];
-            GameTypeMainLetter *newLetter = [[GameTypeMainLetter alloc] initLetter];
+            GameTypeMainLetter *newLetter;
+            
+            if(setFirstUpdateToBeVowl){
+                NSString *randomVowl = [Utils randomizeVowl];
+                newLetter = [[GameTypeMainLetter alloc] initLetterWithLetter:randomVowl];
+                setFirstUpdateToBeVowl = false;
+            }else{
+                newLetter = [[GameTypeMainLetter alloc] initLetter];
+            }
             
             newLetter.position =  Letter.origPosition;
             [newLetter setOriginalPosition:newLetter.position];
@@ -57,7 +77,7 @@
             
         }
     }
-    
+        
 }
 
 
@@ -69,6 +89,28 @@
 
 - (NSMutableArray *)getLetterBankArray{
     return letterBankArray;
+}
+
+
+- (bool)bankContainsVowl{
+    
+    for(GameTypeMainLetter *letter in letterBankArray){
+        if([self stringContainsVowl:[letter getLetter]] && [letter getActive]){
+            return true;
+        }
+    }
+    return false;
+}
+
+- (bool)stringContainsVowl:(NSString *)letterString{
+    NSMutableArray *vowlArray = [[NSMutableArray alloc] initWithObjects: @"a", @"e", @"i", @"o", @"u", nil];
+    
+    for(NSString *letter in vowlArray){
+        if ([letterString isEqualToString:letter]) {
+            return true;
+        }
+    }
+    return false;
 }
 
 @end
